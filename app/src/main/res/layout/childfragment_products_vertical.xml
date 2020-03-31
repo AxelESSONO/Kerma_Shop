@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/products_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/bottomBar" />
+
+    <ProgressBar
+        android:id="@+id/loading_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTintMode="src_in"
+        android:indeterminateTint="@color/colorPrimaryLight" />
+
+    <TextView
+        android:id="@+id/empty_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@string/record_not_found"
+        android:textColor="@color/textColorPrimaryDark"
+        android:layout_centerInParent="true" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/resetFiltersBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/reset_filters"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_filter_remove_white"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/empty_record"
+        android:background="@drawable/rounded_corners_button_red" />
+
+    <ProgressBar
+        android:id="@+id/loading_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:indeterminateTintMode="src_in"
+        android:indeterminateTint="@color/colorPrimaryLight" />
+
+
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@color/windowBackgroundDark">
+
+        <LinearLayout
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/sort_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sort_black_24dp"
+                android:scaleType="fitCenter"
+                android:clickable="false"
+                android:text="Trier les produits"
+                android:textSize="12sp"
+                android:textColor="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/sort_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:text="Les plus récents"
+                android:textAllCaps="true"
+                android:textSize="16sp"
+                android:textAlignment="viewStart"
+                android:textColor="?attr/colorPrimary"
+                android:gravity="start|center_vertical"
+                android:drawableTint="?attr/colorPrimary"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_up_black_24dp" />
+
+        </LinearLayout>
+
+        <ToggleButton
+            android:id="@+id/layout_toggleBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:textOff=""
+            android:textOn=""
+            android:checked="true"
+            android:layout_margin="10dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:background="@drawable/toggle_ic_view" />
+
+        <ImageButton
+            android:id="@+id/removeFilterBtn"
+            android:layout_width="56dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_reload"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            android:clickable="false"
+            android:tint="?attr/colorPrimary"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/filterBtn"
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:textOff=""
+            android:textOn=""
+            android:checked="false"
+            android:layout_margin="10dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:background="@drawable/ic_filter_results_icon" />
+
+    </LinearLayout>
+
+</RelativeLayout>

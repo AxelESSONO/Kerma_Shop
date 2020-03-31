@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/product_tabs_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:tabBackground="@color/white"
+            app:tabIndicatorColor="@color/textColorSecondaryDark"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/textColorSecondaryDark"
+            app:tabTextAppearance="@style/MyTabTextAppearance"
+            app:tabTextColor="@color/textColorSecondaryLight" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/product_tabs_with_icon"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/white"
+            app:tabBackground="@color/white"
+            app:tabIndicatorColor="@color/textColorSecondaryDark"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/textColorSecondaryDark"
+            app:tabTextAppearance="@style/MyTabTextAppearance"
+            app:tabTextColor="@color/textColorSecondaryLight" />
+
+
+    </FrameLayout>
+
+    <com.obiangetfils.kermashop.customcompo.CustomViewPager
+        android:id="@+id/product_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/windowBackground"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</LinearLayout>

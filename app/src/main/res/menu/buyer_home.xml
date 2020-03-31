@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/notification"
+        android:title="Publicités"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/toolbar_ic_cart"
+        android:title="panier"
+        android:icon="@drawable/ic_local_grocery_store_black_24dp"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="Réglages"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme.NoActionBar"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Admin.AddNewProductActivity">
+
+    <include
+        android:id="@+id/include_1"
+        layout="@layout/toolbar_layout"/>
+<!--
+    <ImageView
+        android:id="@+id/ret"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/ic_arrow_back_black_24dp"/>-->
+
+    <GridView
+        android:id="@+id/gv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:numColumns="3"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/include_1"
+        android:layout_above="@id/linear_layout_add"
+        >
+    </GridView>
+
+    <ImageView
+        android:id="@+id/no_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_1"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_above="@id/linear_layout_add"
+        android:src="@drawable/ic_no_image_yet"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/category_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:drawablePadding="15dp"
+                android:gravity="start|center_vertical"
+                android:hint="Catégorie du produit"
+                android:inputType="text"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/product_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:drawablePadding="15dp"
+                android:gravity="start|center_vertical"
+                android:hint="Nom du produit"
+                android:inputType="text"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/product_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:drawablePadding="15dp"
+                android:gravity="start|center_vertical"
+                android:hint="Description du produit"
+                android:inputType="textMultiLine"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:padding="8dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/product_price"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:drawablePadding="15dp"
+                android:gravity="start|center_vertical"
+                android:hint="Prix du produit"
+                android:inputType="number"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:weightSum="10"
+            tools:ignore="MissingConstraints">
+
+
+            <Button
+                android:id="@+id/add_new_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="5"
+                android:background="@drawable/rounded_corners_bouton"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Ajouter à la BDD"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints"/>
+
+            <Button
+                android:id="@+id/images_choice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_corners_bouton"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Choix image(s)"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/select_product_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+</RelativeLayout>

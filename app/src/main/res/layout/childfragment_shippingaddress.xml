@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/windowBackground" >
+
+    <RadioGroup
+        android:id="@+id/daily_weekly_button_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="134dp"
+            android:gravity="center"
+            android:layout_height="38dp"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:paddingLeft="16dp"
+            android:paddingTop="3dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="3dp"
+            android:text="Livraison"
+            android:textColor="@drawable/radio_flat_text_selector" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:gravity="center"
+            android:layout_width="134dp"
+            android:layout_height="38dp"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:paddingLeft="16dp"
+            android:paddingTop="3dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="3dp"
+            android:text="Facturation"
+            android:textColor="@drawable/radio_flat_text_selector" />
+
+    </RadioGroup>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp" >
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/firstname"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/first_name"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="start|center_vertical"
+                android:background="@drawable/rounded_corners_edittext_dark">
+            </com.obiangetfils.kermashop.customcompo.CustomEditText>
+
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/lastname"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/last_name"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="start|center_vertical"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/address_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/address_1"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="start|center_vertical"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/address_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/address_2"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="start|center_vertical"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/company"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/company"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="start|center_vertical"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/country"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/country"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="start|center_vertical"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/zone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/zone"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="start|center_vertical"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/city"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="start|center_vertical"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/postcode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/post_code"
+                android:inputType="number"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="start|center_vertical"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:drawablePadding="15dp"
+                android:gravity="start|center_vertical"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress|textNoSuggestions"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+            <com.obiangetfils.kermashop.customcompo.CustomEditText
+                android:id="@+id/contact"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:hint="@string/contact_no"
+                android:inputType="phone"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                android:drawablePadding="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textAlignment="viewStart"
+                android:gravity="start|center_vertical"
+                android:layout_marginTop="@dimen/input_field_margin"
+                android:background="@drawable/rounded_corners_edittext_dark" />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save_address_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:text="Enregistrer cette adresse"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size"
+            android:background="?attr/colorPrimary" />
+
+    </LinearLayout>
+
+</LinearLayout>

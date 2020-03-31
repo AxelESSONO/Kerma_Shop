@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    app:contentPadding="-3dp"
+    android:elevation="10dp"
+    android:layout_marginTop="10dp">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/row_item_padding"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/product_like_btn">
+
+            <ImageView
+                android:id="@+id/product_image_card"
+                android:layout_width="170dp"
+                android:layout_height="160dp"
+                android:src="@drawable/placeholder"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/product_name_card"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:text="Nom du produit"
+                android:textStyle="bold"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/black"
+                android:padding="@dimen/txt_custom_padding"
+                android:fontFamily="@font/maven_pro_bold"/>
+            <TextView
+                android:id="@+id/product_price_card"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:text="Prix du produit"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/black"
+                android:padding="@dimen/txt_custom_padding"
+                android:fontFamily="@font/maven_pro_bold"/>
+
+            <Button
+                android:id="@+id/product_add_to_cart_cart"
+                android:layout_width="170dp"
+                android:layout_height="28dp"
+                android:background="@color/colorPrimaryDark"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:text="@string/addToCart"
+                android:textSize="12dp"
+                android:padding="@dimen/txt_custom_padding"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

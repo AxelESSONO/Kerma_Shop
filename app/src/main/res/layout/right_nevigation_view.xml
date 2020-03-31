@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:rsb="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:background="?attr/colorPrimary"
+            android:padding="20dp">
+
+            <ImageButton
+                android:id="@+id/right_nevigation_cross_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/white"
+                android:layout_marginTop="2dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_close_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filtre"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selon le prix"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_margin="10dp" />
+
+            <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                rsb:absoluteMinValue="20"
+                rsb:absoluteMaxValue="150" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_20"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Par Vente / Vedette"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_margin="10dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorPrimary"
+                android:text="Vente"
+                android:textSize="16sp"
+                android:paddingStart="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_20"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorPrimary"
+                android:text="Vedette"
+                android:textSize="16sp"
+                android:paddingStart="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Par Couleur"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_margin="10dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorPrimary"
+                android:text="Rouge"
+                android:textSize="16sp"
+                android:paddingStart="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_20"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorPrimary"
+                android:text="Noire"
+                android:textSize="16sp"
+                android:paddingStart="20dp" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Par Taille"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_margin="10dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorPrimary"
+                android:text="Petite taille (S)"
+                android:textSize="16sp"
+                android:paddingStart="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_20"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorPrimary"
+                android:text="Taille Moyenne (M)"
+                android:textSize="16sp"
+                android:paddingStart="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_20"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorPrimary"
+                android:text="Taille Large (L)"
+                android:textSize="16sp"
+                android:paddingStart="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_20"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorPrimary"
+                android:paddingStart="20dp"
+                android:text="Extra Large (XL)"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
