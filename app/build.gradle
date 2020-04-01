@@ -55,6 +55,24 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
 
+
+    // MVP
+    implementation 'com.hannesdorfmann.mosby3:mvp:3.1.0' // Plain MVP
+
+    // Social
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
+    implementation 'com.facebook.android:facebook-android-sdk:4.17.0'
+
+
+
+
+    /* CROPPER */
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
+    /* STORY VIEW */
+    implementation 'com.github.shts:StoriesProgressView:3.0.0'
+
+
     /*Add Glide dependency*/
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'

@@ -8,8 +8,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.obiangetfils.kermashop.Buyer.LoginActivity;
-import com.obiangetfils.kermashop.CommonAvtivity.RegisterActivity;
+import com.obiangetfils.kermashop.CommonActivity.AddStoryActivity;
+import com.obiangetfils.kermashop.CommonActivity.DisplayStoryActivity;
+import com.obiangetfils.kermashop.CommonActivity.RegisterActivity;
 import com.obiangetfils.kermashop.R;
 import com.obiangetfils.kermashop.utills.Ecom01ThemesDialog;
 
@@ -47,7 +48,7 @@ public class IntroScreen extends AppIntro {
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        Intent intent = new Intent(IntroScreen.this, RegisterActivity.class);
+        Intent intent = new Intent(IntroScreen.this, DisplayStoryActivity.class);
         startActivity(intent);
         finish();
     }
