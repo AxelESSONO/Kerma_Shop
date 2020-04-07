@@ -33,7 +33,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.obiangetfils.kermashop.BuildConfig;
 import com.obiangetfils.kermashop.DataSettings.MyData;
 import com.obiangetfils.kermashop.Intro.IntroScreen;
-import com.obiangetfils.kermashop.Iterface.RightMenuClick;
+import com.obiangetfils.kermashop.Interface.RightMenuClick;
 import com.obiangetfils.kermashop.R;
 import com.obiangetfils.kermashop.fragments.Category;
 import com.obiangetfils.kermashop.fragments.MyCart;
