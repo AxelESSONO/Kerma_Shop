@@ -1,4 +1,4 @@
-package com.obiangetfils.kermashop.CommonAvtivity;
+package com.obiangetfils.kermashop.CommonActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
 import com.obiangetfils.kermashop.Buyer.LoginActivity;
 import com.obiangetfils.kermashop.R;
 
@@ -145,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Félitation, votre compte a été créé avec succès.", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                Intent intent = new Intent(RegisterActivity.this, BuyerHomeActivity.class);
                                 startActivity(intent);
                             }
                             else

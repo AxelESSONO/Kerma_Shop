@@ -29,6 +29,7 @@ import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static final int LOGIN_REQUEST_CODE = 10001 ; // new
     private CheckBox chkBoxRememberMe;
     private TextView AdminLink, NotAdminLink, ForgetPassWordLink;
     private EditText InputPhoneNumber, InputPassword;
@@ -186,36 +187,36 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
-                //Toast.makeText(LoginActivity.this, userData.getPhone(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LoginPostActivity.this, userData.getPhone(), Toast.LENGTH_SHORT).show();
 
     /*            if (dataSnapshot.exists()) {
 
                     if (userData.getPhone().equals(phone)) {
                         if (userData.getPassword().equals(password)) {
                             if (parentDbName.equals("Admins")) {
-                                Toast.makeText(LoginActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginPostActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-                                Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                                Intent intent = new Intent(LoginPostActivity.this, AdminHomeActivity.class);
                                 startActivity(intent);
 
                             } else if (parentDbName.equals("Users")) {
-                                Toast.makeText(LoginActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginPostActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-                                Intent intent = new Intent(LoginActivity.this, BuyerHomeActivity.class);
+                                Intent intent = new Intent(LoginPostActivity.this, BuyerHomeActivity.class);
                                 Prevalent.currentOnLineUser = userData;
                                 startActivity(intent);
                             }
                         } else {
                             loadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Mot de passe saisi est incorrect", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginPostActivity.this, "Mot de passe saisi est incorrect", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Aucun compte n'existe au numéro: " + phone, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPostActivity.this, "Aucun compte n'existe au numéro: " + phone, Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
-                    Toast.makeText(LoginActivity.this, "Numéro de téléphone ou mot de passe incorrect, veuillez vérifier les informations saisies.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginPostActivity.this, "Numéro de téléphone ou mot de passe incorrect, veuillez vérifier les informations saisies.", Toast.LENGTH_LONG).show();
                 }*/
             }
 

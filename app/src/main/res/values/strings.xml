@@ -269,6 +269,18 @@
     <string name="newest_product">Nouveau</string>
     <string name="super_deals_product">Promo</string>
     <string name="trend">Tendance</string>
+    <string name="hint_title">Titre</string>
+    <string name="hint_description">Description</string>
+    <string name="press_once_again_to_exit">Press once again to exit</string>
+    <string name="button_ok">OK</string>
+    <string name="permissions_not_granted">autorisations non accordées</string>
+    <string name="internet_connection_failed">Echec connexion</string>
+    <string name="account_details_will_be_displayed_here">Account details will be displayed here</string>
+    <string name="notifications_feature_yet_to_be_implemented">notifications_feature yet to be implemented</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+    <string name="label_buy_now">Payer maintenant</string>
+    <string name="title_activity_home_simple">HomeSimple</string>
+    <string name="logout">Se déconnecter</string>
 
 
 </resources>

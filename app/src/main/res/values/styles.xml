@@ -36,14 +36,15 @@
         <item name="actionModeStyle">@style/OverrideCustomActionModeStyle</item>
         <item name="windowActionModeOverlay">true</item>
     </style>
+
     <style name="OverrideCustomActionModeStyle" parent="Base.Widget.AppCompat.ActionMode">
         <item name="background">@color/multiple_image_select_primary</item>
     </style>
-    <style name="OverrideCustomToolbarTheme" parent="Base.ThemeOverlay.AppCompat.ActionBar">
-    </style>
+
+    <style name="OverrideCustomToolbarTheme" parent="Base.ThemeOverlay.AppCompat.ActionBar"></style>
 
 
-<!--    <style name="AndroidImageSlider_Indicator">
+    <!--    <style name="AndroidImageSlider_Indicator">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
@@ -71,51 +72,61 @@
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/black</item>
     </style>
+
     <style name="TemplateTheme1" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/red_500</item>
         <item name="colorPrimaryDark">@color/red_700</item>
         <item name="colorAccent">@color/red_500</item>
     </style>
+
     <style name="TemplateTheme2" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/deep_purple_500</item>
         <item name="colorPrimaryDark">@color/deep_purple_700</item>
         <item name="colorAccent">@color/deep_purple_A100</item>
     </style>
+
     <style name="TemplateTheme3" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/light_blue_500</item>
         <item name="colorPrimaryDark">@color/light_blue_700</item>
         <item name="colorAccent">@color/light_blue_500</item>
     </style>
+
     <style name="TemplateTheme4" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/green_500</item>
         <item name="colorPrimaryDark">@color/green_700</item>
         <item name="colorAccent">@color/green_500</item>
     </style>
+
     <style name="TemplateTheme5" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/yellow_500</item>
         <item name="colorPrimaryDark">@color/yellow_700</item>
         <item name="colorAccent">@color/yellow_500</item>
     </style>
+
     <style name="TemplateTheme6" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/blue_grey_500</item>
         <item name="colorPrimaryDark">@color/blue_grey_700</item>
         <item name="colorAccent">@color/blue_grey_500</item>
     </style>
+
     <style name="TemplateTheme7" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/pink_500</item>
         <item name="colorPrimaryDark">@color/pink_700</item>
         <item name="colorAccent">@color/pink_500</item>
     </style>
+
     <style name="TemplateTheme8" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/indigo_500</item>
         <item name="colorPrimaryDark">@color/indigo_700</item>
         <item name="colorAccent">@color/indigo_500</item>
     </style>
+
     <style name="TemplateTheme9" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/cyan_500</item>
         <item name="colorPrimaryDark">@color/cyan_700</item>
         <item name="colorAccent">@color/cyan_500</item>
     </style>
+
     <style name="TemplateTheme10" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/light_green_500</item>
         <item name="colorPrimaryDark">@color/light_green_700</item>
