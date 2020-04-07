@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/windowBackground"
-    tools:context=".CommonAvtivity.RegisterActivity">
+    tools:context=".CommonActivity.RegisterActivity">
 
 
     <ImageView
@@ -208,11 +208,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"
                     android:layout_marginTop="@dimen/button_margin"
-                    android:text="@string/register"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/button_text_size"
-                    android:background="@drawable/rounded_corners_bouton" />
+                    android:background="@drawable/rounded_corners_bouton"
+                    android:text="@string/register"/>
 
             </LinearLayout>
 

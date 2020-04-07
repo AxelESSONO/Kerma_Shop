@@ -55,7 +55,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
 
-
     // MVP
     implementation 'com.hannesdorfmann.mosby3:mvp:3.1.0' // Plain MVP
 
@@ -64,10 +63,12 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:4.17.0'
 
 
-
-
     /* CROPPER */
-    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+    //api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
+    /* Compressor */
+    implementation 'id.zelory:compressor:2.1.0'
 
     /* STORY VIEW */
     implementation 'com.github.shts:StoriesProgressView:3.0.0'
@@ -88,6 +89,9 @@ dependencies {
     /* Color Ratting Bar*/
     implementation 'hyogeun.github.com.colorratingbar:ColorRatingBar:1.0.1'
 
+    /* card Form */
+    implementation 'com.braintreepayments:card-form:4.2.0'
+
     /* Intro */
     implementation 'com.github.AppIntro:AppIntro:4.2.3'
 
@@ -96,9 +100,13 @@ dependencies {
 
     /*firebase dependencies*/
     implementation 'com.google.firebase:firebase-database:16.0.4'
-    implementation 'com.google.firebase:firebase-storage:16.0.4'
-    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-storage:17.0.0'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
     implementation 'com.firebaseui:firebase-ui-database:4.2.1'
+    implementation 'com.firebaseui:firebase-ui-auth:4.1.0'
+    implementation 'com.google.firebase:firebase-firestore:21.4.1'
+    //implementation 'com.google.firebase:firebase-firestore:16.0.4'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
