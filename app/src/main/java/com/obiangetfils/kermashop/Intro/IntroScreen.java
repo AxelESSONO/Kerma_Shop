@@ -8,8 +8,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.obiangetfils.kermashop.CommonActivity.AddStoryActivity;
-import com.obiangetfils.kermashop.CommonActivity.DisplayStoryActivity;
 import com.obiangetfils.kermashop.CommonActivity.RegisterActivity;
 import com.obiangetfils.kermashop.R;
 import com.obiangetfils.kermashop.utills.Ecom01ThemesDialog;
@@ -40,15 +38,17 @@ public class IntroScreen extends AppIntro {
         setColorSkipButton(ContextCompat.getColor(IntroScreen.this, R.color.colorPrimary));
         setNextArrowColor(ContextCompat.getColor(IntroScreen.this, R.color.colorPrimary));
 
-        setIndicatorColor(ContextCompat.getColor(IntroScreen.this, R.color.colorPrimary),
-                ContextCompat.getColor(IntroScreen.this, R.color.iconsLight));
+        setIndicatorColor(ContextCompat.getColor(IntroScreen.this, R.color.colorPrimary), ContextCompat.getColor(IntroScreen.this, R.color.iconsLight));
+        setSkipText("IGNORER");
+
+
     }
 
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        Intent intent = new Intent(IntroScreen.this, DisplayStoryActivity.class);
+        Intent intent = new Intent(IntroScreen.this, RegisterActivity.class);
         startActivity(intent);
         finish();
     }
@@ -56,6 +56,11 @@ public class IntroScreen extends AppIntro {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
+
+
+        Intent intent = new Intent(IntroScreen.this, RegisterActivity.class);
+        startActivity(intent);
+
         finish();
     }
 
