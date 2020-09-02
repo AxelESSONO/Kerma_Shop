@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
 import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
 import com.obiangetfils.kermashop.DataSettings.MyData;
 import com.obiangetfils.kermashop.R;
@@ -211,20 +212,19 @@ public class Checkout extends Fragment {
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_checkout, parent, false);
-
             return new MyViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
             final MyViewHolder holder2 = myViewHolder;
-
             holder2.checkout_item_title.setText(cartItemsList.get(position).getTitle());
             holder2.cover_loader.setVisibility(View.GONE);
             holder2.cart_item_cover.setVisibility(View.VISIBLE);
-            holder2.cart_item_cover.setImageResource(cartItemsList.get(position).getImage());
-            holder2.checkout_item_price.setText(cartItemsList.get(position).getNewPrice());
+            //holder2.cart_item_cover.setImageResource(cartItemsList.get(position).getImage());
 
+            Glide.with(getContext()).load(cartItemsList.get(position).getImage()).into(holder2.cart_item_cover);
+            holder2.checkout_item_price.setText(cartItemsList.get(position).getNewPrice());
         }
 
         @Override
@@ -239,7 +239,6 @@ public class Checkout extends Fragment {
             private RecyclerView attributes_recycler;
             private TextView checkout_item_title, checkout_item_quantity, checkout_item_price, checkout_item_price_final, checkout_item_category;
 
-
             public MyViewHolder(final View itemView) {
                 super(itemView);
 
@@ -253,8 +252,5 @@ public class Checkout extends Fragment {
                 attributes_recycler = itemView.findViewById(R.id.order_item_attributes_recycler);
             }
         }
-
     }
-
 }
-

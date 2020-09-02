@@ -8,6 +8,14 @@
         android:title="Search"
         app:showAsAction="always" />
 
+
+    <item
+        android:id="@+id/actionToolbar_story"
+        android:icon="@drawable/ic_notification_white_24dp"
+        android:title="Search"
+        app:showAsAction="always" />
+
+
     <item
         android:id="@+id/actionToolbar_Cart"
         android:title="Cart"

@@ -157,7 +157,6 @@ public class Product extends Fragment {
                     selectedTabIndex = i + 1;
                 }
             }
-
         }
     }
 
@@ -227,8 +226,5 @@ public class Product extends Fragment {
             fragmentList.add(fragment);
             fragmentTitleList.add(title);
         }
-
-
     }
-
 }

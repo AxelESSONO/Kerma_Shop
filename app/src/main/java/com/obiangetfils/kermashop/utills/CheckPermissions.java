@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
+import com.obiangetfils.kermashop.utills.KermaUtil.KermaAuth;
+
 
 /**
  * CheckPermissions can be used to check different Permissions

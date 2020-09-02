@@ -4,7 +4,7 @@ public class ProductOBJ {
 
     private int ID;
     private String title;
-    private Integer image;
+    private String image;
     private String newPrice;
     private String oldPrice;
     private boolean isNewTag;
@@ -17,14 +17,17 @@ public class ProductOBJ {
 
     public ProductOBJ(int ID,
                       String title,
-                      Integer image,
+                      String image, //  non
+
                       String newPrice,
                       String oldPrice,
+
                       boolean isNewTag,
                       boolean isSaleTag,
                       boolean isFeaturedTag,
                       boolean isFavTag,
-                      int categoryID,
+
+                      int categoryID, // non
                       int defaultStock,
                       String productType)
     {
@@ -58,11 +61,11 @@ public class ProductOBJ {
         this.title = title;
     }
 
-    public Integer getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Integer image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

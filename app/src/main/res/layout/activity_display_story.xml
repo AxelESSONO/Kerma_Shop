@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:id="@+id/relativeLayout_display_story"
+    android:theme="@style/AppTheme"
+    tools:context=".Story.DisplayStoryActivity">
 
     <ImageView
         android:id="@+id/image"
@@ -10,7 +16,20 @@
         android:layout_height="match_parent"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
         tools:src="@drawable/sample1" />
+
+    <jp.shts.android.storiesprogressview.StoriesProgressView
+        android:id="@+id/stories"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="top"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_marginTop="3dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,21 +40,21 @@
             android:id="@+id/reverse"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1" />
+
+        <View
+            android:id="@+id/pause"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
             android:layout_weight="1" />
 
         <View
             android:id="@+id/skip"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
             android:layout_weight="1" />
     </LinearLayout>
-
-    <jp.shts.android.storiesprogressview.StoriesProgressView
-        android:id="@+id/stories"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_gravity="top"
-        android:layout_marginTop="8dp" />
-</merge>
+</RelativeLayout>

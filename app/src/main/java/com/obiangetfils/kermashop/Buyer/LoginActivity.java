@@ -13,32 +13,43 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.common.SignInButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.obiangetfils.kermashop.Admin.AdminHomeActivity;
+import com.obiangetfils.kermashop.CommonActivity.ResetPasswordActivity;
+import com.obiangetfils.kermashop.Delivery.DeliveryManHomeActivity;
+import com.obiangetfils.kermashop.PickUpPoint.PickUpPointManActivity;
 import com.obiangetfils.kermashop.Prevalent.Prevalent;
 import com.obiangetfils.kermashop.R;
+import com.obiangetfils.kermashop.Sellers.SellerHomeActivity;
 import com.obiangetfils.kermashop.models.AdminModel;
 import com.obiangetfils.kermashop.models.UserOBJ;
+import com.obiangetfils.kermashop.utills.Ecom01ThemesDialog;
 import com.rey.material.widget.CheckBox;
 
 import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static final int LOGIN_REQUEST_CODE = 10001 ; // new
+    public static final int LOGIN_REQUEST_CODE = 10001; // new
     private CheckBox chkBoxRememberMe;
-    private TextView AdminLink, NotAdminLink, ForgetPassWordLink;
+    private TextView AdminLink, NotAdminLink;
+    private TextView ForgetPassWordLink;
     private EditText InputPhoneNumber, InputPassword;
     private Button LoginButton;
+    private SignInButton googleButton;
+
     private ProgressDialog loadingBar;
     private String parentDbName = "Users";
+    String buttonText = "Google";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Ecom01ThemesDialog.getcolorList().get(Ecom01ThemesDialog.selectedTheme).getThemeID());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -49,16 +60,27 @@ public class LoginActivity extends AppCompatActivity {
         InputPhoneNumber = (EditText) findViewById(R.id.login_phone_number_input);
         InputPassword = (EditText) findViewById(R.id.login_user_password);
         LoginButton = (Button) findViewById(R.id.login_btn);
+        googleButton = (SignInButton) findViewById(R.id.google_signIn);
         loadingBar = new ProgressDialog(this);
 
+        InputPhoneNumber.setText("");
+        InputPassword.setText("");
 
         Paper.init(this);
-
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginUser();
+            }
+        });
+
+        ForgetPassWordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                intent.putExtra("check", "login");
+                startActivity(intent);
             }
         });
 
@@ -82,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
                 parentDbName = "Users";
             }
         });
+
+        setGooglePlusButtonText(googleButton, buttonText);
     }
 
     private void LoginUser() {
@@ -113,118 +137,136 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         final DatabaseReference RootRef;
-        RootRef = FirebaseDatabase.getInstance().getReference().child(parentDbName).child(phone);
+        RootRef = FirebaseDatabase.getInstance().getReference();
 
-        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ////Users userData = dataSnapshot.getValue(Users.class);
+        if (parentDbName.equals("Admins")) {
 
-                // Users Login
-                if (parentDbName.equals("Users")) {
-                    String user_firstname = dataSnapshot.child("userFirstName").getValue(String.class);
-                    String user_lastName = dataSnapshot.child("userLastName").getValue(String.class);
-                    String user_username = dataSnapshot.child("userName").getValue(String.class);
-                    String user_password = dataSnapshot.child("userPassword").getValue(String.class);
-                    String user_phone = dataSnapshot.child("userPhone").getValue(String.class);
-                    UserOBJ userData = new UserOBJ(user_firstname, user_lastName, user_username, user_password, user_phone);
+            RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(parentDbName).child(phone).exists()) {
 
-                    if (dataSnapshot.exists()) {
+                        String adminFirstName = dataSnapshot.child(parentDbName).child(phone).child("adminFirstName").getValue(String.class);
+                        String adminName = dataSnapshot.child(parentDbName).child(phone).child("adminName").getValue(String.class);
+                        String adminPassword = dataSnapshot.child(parentDbName).child(phone).child("adminPassword").getValue(String.class);
+                        String adminPhone = dataSnapshot.child(parentDbName).child(phone).child("adminPhoneNumber").getValue(String.class);
+
+                        AdminModel adminData = new AdminModel(adminFirstName, adminName, adminPassword, adminPhone);
+
+                        if (adminData.getAdmin_phone().equals(phone)) {
+                            if (adminData.getAdmin_password().equals(password)) {
+
+                                Toast.makeText(LoginActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                                Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                                Prevalent.currentOnLineAdmin = adminData;
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Mot de passe ou numéro de téléphone incorrect", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Mot de passe ou numéro de téléphone incorrect", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginActivity.this, "Connexion annulée", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        if (parentDbName.equals("Users")) {
+
+            RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(parentDbName).child(phone).exists()) {
+
+                        String userFirstName = dataSnapshot.child(parentDbName).child(phone).child("userFirstName").getValue(String.class);
+                        String userLastName = dataSnapshot.child(parentDbName).child(phone).child("userLastName").getValue(String.class);
+                        String userName = dataSnapshot.child(parentDbName).child(phone).child("userName").getValue(String.class);
+                        String userPassword = dataSnapshot.child(parentDbName).child(phone).child("userPassword").getValue(String.class);
+                        String userPhone = dataSnapshot.child(parentDbName).child(phone).child("userPhone").getValue(String.class);
+                        String userType = dataSnapshot.child(parentDbName).child(phone).child("userType").getValue(String.class);
+                        String userId = dataSnapshot.child(parentDbName).child(phone).child("userID").getValue(String.class);
+
+                        String userImage = dataSnapshot.child(parentDbName).child(phone).child("userImage").getValue(String.class);
+
+                        UserOBJ userData = new UserOBJ(userFirstName, userLastName, userName, userPassword, userPhone, userType, userId, userImage);
+
                         if (userData.getUser_phone().equals(phone)) {
                             if (userData.getUser_password().equals(password)) {
-                                if (parentDbName.equals("Users")) {
-                                    Toast.makeText(LoginActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
-                                    loadingBar.dismiss();
-                                    Intent intent = new Intent(LoginActivity.this, BuyerHomeActivity.class);
-                                    Prevalent.currentOnLineUser = userData;
-                                    startActivity(intent);
-                                }
+
+                                //Toast.makeText(LoginActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+
+                                gotoActivity(userData);
+
                             } else {
                                 loadingBar.dismiss();
-                                Toast.makeText(LoginActivity.this, "Mot de passe saisi est incorrect", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Aucun compte n'existe au numéro: " + phone, Toast.LENGTH_SHORT).show();
-                        loadingBar.dismiss();
-                        Toast.makeText(LoginActivity.this, "Numéro de téléphone ou mot de passe incorrect, veuillez vérifier les informations saisies.", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                // Admin Login
-
-                else if (parentDbName.equals("Admins")) {
-
-                    String admin_firstname = dataSnapshot.child("adminFirstName").getValue(String.class);
-                    String admin_Name = dataSnapshot.child("adminName").getValue(String.class);
-                    String admin_password = dataSnapshot.child("adminPassword").getValue(String.class);
-                    String admin_phone = dataSnapshot.child("adminPhoneNumber").getValue(String.class);
-                    AdminModel userData = new AdminModel(admin_firstname, admin_Name, admin_password, admin_phone);
-
-                    if (dataSnapshot.exists()) {
-                        if (userData.getAdmin_phone().equals(phone)) {
-                            if (userData.getAdmin_password().equals(password)) {
-                                if (parentDbName.equals("Admins")) {
-                                    Toast.makeText(LoginActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
-                                    loadingBar.dismiss();
-                                    Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
-                                    startActivity(intent);
-                                }
-                            } else {
-                                loadingBar.dismiss();
-                                Toast.makeText(LoginActivity.this, "Mot de passe saisi est incorrect", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Aucun compte n'existe au numéro: " + phone, Toast.LENGTH_SHORT).show();
-                        loadingBar.dismiss();
-                        Toast.makeText(LoginActivity.this, "Numéro de téléphone ou mot de passe incorrect, veuillez vérifier les informations saisies.", Toast.LENGTH_LONG).show();
-                    }
-
-                } else if (parentDbName.equals("Delivery Man")) {
-
-                } else if (parentDbName.equals("Seller")) {
-
-                }
-
-                //Toast.makeText(LoginPostActivity.this, userData.getPhone(), Toast.LENGTH_SHORT).show();
-
-    /*            if (dataSnapshot.exists()) {
-
-                    if (userData.getPhone().equals(phone)) {
-                        if (userData.getPassword().equals(password)) {
-                            if (parentDbName.equals("Admins")) {
-                                Toast.makeText(LoginPostActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-
-                                Intent intent = new Intent(LoginPostActivity.this, AdminHomeActivity.class);
-                                startActivity(intent);
-
-                            } else if (parentDbName.equals("Users")) {
-                                Toast.makeText(LoginPostActivity.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-
-                                Intent intent = new Intent(LoginPostActivity.this, BuyerHomeActivity.class);
-                                Prevalent.currentOnLineUser = userData;
-                                startActivity(intent);
+                                Toast.makeText(LoginActivity.this, "Mot de passe ou numéro de téléphone incorrect", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             loadingBar.dismiss();
-                            Toast.makeText(LoginPostActivity.this, "Mot de passe saisi est incorrect", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Mot de passe ou numéro de téléphone incorrect", Toast.LENGTH_SHORT).show();
                         }
+                    } else {
+                        loadingBar.dismiss();
+                        Toast.makeText(LoginActivity.this, "Aucun compte n'existe sous ce numéro", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(LoginPostActivity.this, "Aucun compte n'existe au numéro: " + phone, Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
-                    Toast.makeText(LoginPostActivity.this, "Numéro de téléphone ou mot de passe incorrect, veuillez vérifier les informations saisies.", Toast.LENGTH_LONG).show();
-                }*/
-            }
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginActivity.this, "Connexion annulée", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
+
+    private void gotoActivity(UserOBJ userData) {
+
+        if (userData.getUser_type().equals("Acheteur")) {
+            Intent intent = new Intent(LoginActivity.this, BuyerHomeActivity.class);
+            Prevalent.currentOnLineUser = userData;
+            startActivity(intent);
+        } else if (userData.getUser_type().equals("Commerçant")) {
+            //Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
+            Prevalent.currentOnLineUser = userData;
+            startActivity(intent);
+        } else if (userData.getUser_type().equals("Livreur")) {
+            Intent intent = new Intent(LoginActivity.this, DeliveryManHomeActivity.class);
+            Prevalent.currentOnLineUser = userData;
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(LoginActivity.this, PickUpPointManActivity.class);
+            Prevalent.currentOnLineUser = userData;
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        InputPhoneNumber.setText("");
+        InputPassword.setText("");
+    }
+
+    protected void setGooglePlusButtonText(SignInButton signInButton, String buttonText) {
+        // Find the TextView that is inside of the SignInButton and set its text
+        for (int i = 0; i < signInButton.getChildCount(); i++) {
+            View v = signInButton.getChildAt(i);
+
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setText(buttonText);
+                return;
+            }
+        }
+    }
+
+
 }

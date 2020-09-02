@@ -19,11 +19,6 @@ public class Intro_Slide_1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.intro_slide_1, container, false);
-        
-
-
-        
-        
         return rootView;
     }
 

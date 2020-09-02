@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:padding="2dp"
+                android:text="Vous souhaitez devenir : "
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/radio_group_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <RadioButton
+                android:id="@+id/seller_popup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Commerçant sur notre plate-forme" />
+
+            <RadioButton
+                android:id="@+id/point_retrait_popup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Point retrait pour nos clients" />
+
+            <RadioButton
+                android:id="@+id/livreur_et_commerçant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Commerçant et Point retrait" />
+
+            <RadioButton
+                android:id="@+id/livreur_popup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Livreur de nos produits" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="NB : Tout utilisateur de notre application possède par défaut un compte acheteur."
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="11dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/close_popup"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_red_dark"
+                android:text="Fermer"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/validate_popup"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@color/green_900"
+                android:text="Valider"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

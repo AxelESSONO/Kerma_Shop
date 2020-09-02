@@ -1,868 +1,873 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/main_checkout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/main_checkout"
-        android:background="@color/layoutBackgroundLight">
+        android:background="@color/layoutBackgroundLight"
+        android:orientation="vertical">
 
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scroll_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:padding="15dp" >
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:padding="15dp">
 
-
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="2dp"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardPreventCornerOverlap="false" >
+                android:orientation="vertical">
 
-                <LinearLayout
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@color/windowBackgroundLight">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/billing_address"
-                            android:textSize="16sp"
-                            android:textColor="@color/textColorSecondaryDark" />
-
-                        <ImageButton
-                            android:id="@+id/checkout_edit_billing"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_edit_black_24dp"
-                            android:tint="?attr/colorPrimary"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="5dp"
-                            android:background="@android:color/transparent" />
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="5dp" >
-
-                        <TextView
-                            android:id="@+id/billing_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="@string/full_name"
-                            android:textSize="14sp"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/textColorSecondary" />
-
-                        <TextView
-                            android:id="@+id/billing_address"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="Ville"
-                            android:textSize="14sp"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/textColorSecondary" />
-
-                        <TextView
-                            android:id="@+id/billing_street"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="@string/address"
-                            android:textSize="14sp"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/textColorSecondary" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="10dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="2dp"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardPreventCornerOverlap="false" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@color/windowBackgroundLight">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/shipping_address"
-                            android:textSize="16sp"
-                            android:textColor="@color/textColorSecondaryDark" />
-
-                        <ImageButton
-                            android:id="@+id/checkout_edit_shipping"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_edit_black_24dp"
-                            android:tint="?attr/colorPrimary"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="5dp"
-                            android:background="@android:color/transparent" />
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="5dp" >
-
-                        <TextView
-                            android:id="@+id/shipping_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="@string/full_name"
-                            android:textSize="14sp"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/textColorSecondary" />
-
-                        <TextView
-                            android:id="@+id/shipping_address"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="Ville"
-                            android:textSize="14sp"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/textColorSecondary" />
-
-                        <TextView
-                            android:id="@+id/shipping_street"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:text="@string/address"
-                            android:textSize="14sp"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/textColorSecondary" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="10dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="2dp"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardPreventCornerOverlap="false" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@color/windowBackgroundLight">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/shipping_method"
-                            android:textSize="16sp"
-                            android:textColor="@color/textColorSecondaryDark" />
-
-                        <ImageButton
-                            android:id="@+id/checkout_edit_shipping_method"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_edit_black_24dp"
-                            android:tint="?attr/colorPrimary"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="5dp"
-                            android:background="@android:color/transparent" />
-
-                    </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/shipping_method"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:padding="5dp"
-                        android:text="@string/shipping_method"
-                        android:textSize="14sp"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/textColorSecondary" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="10dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="2dp"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardPreventCornerOverlap="false" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/products"
-                        android:textSize="16sp"
-                        android:textColor="@color/textColorSecondaryDark"
-                        android:padding="5dp"
-                        android:background="@color/windowBackgroundLight" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/checkout_items_recycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-           <!-- <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="10dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="2dp"
-                android:id="@+id/pointsCardLayer"
-                card_view:cardCornerRadius="5dp"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardPreventCornerOverlap="false" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/click_for_points"
-                        />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/ic_action_medal"
-                        />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="10dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="2dp"
-                android:visibility="gone"
-                android:id="@+id/pointsCardView"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardPreventCornerOverlap="false" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/points"
-                        android:textSize="16sp"
-                        android:textColor="@color/textColorSecondaryDark"
-                        android:padding="5dp"
-                        android:background="@color/windowBackgroundLight" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="5dp" >
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="@string/points_used"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-
-                            <TextView
-                                android:id="@+id/points"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="0"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
-
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="5dp" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="@string/points_discount"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-
-                            <TextView
-                                android:id="@+id/point_discount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="$00.0"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>-->
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="10dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="2dp"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardPreventCornerOverlap="false" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/subtotal"
-                        android:textSize="16sp"
-                        android:textColor="@color/textColorSecondaryDark"
-                        android:padding="5dp"
-                        android:background="@color/windowBackgroundLight" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="5dp" >
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="@string/subtotal"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-
-                            <TextView
-                                android:id="@+id/checkout_subtotal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="2000 Fcfa"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
-
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="5dp" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="@string/tax"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-
-                            <TextView
-                                android:id="@+id/checkout_tax"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="200 Fcfa"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
-
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="5dp" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="@string/shipping"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-
-                            <TextView
-                                android:id="@+id/checkout_shipping"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="300 Fcfa"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
-
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="5dp" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="@string/discount"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-
-                            <TextView
-                                android:id="@+id/checkout_discount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="100 Fcfa"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
-
-                        </RelativeLayout>
-<!--
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="5dp" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="@string/points_discount"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-
-                            <TextView
-                                android:id="@+id/point_discount_subTotal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="$00.0"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
-
-                        </RelativeLayout>-->
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="5dp" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="@string/total"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-
-                            <TextView
-                                android:id="@+id/checkout_total"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="3000 Fcfa"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="15dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="2dp"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardPreventCornerOverlap="false" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/order_notes"
-                        android:textSize="16sp"
-                        android:textColor="@color/textColorSecondaryDark"
-                        android:padding="5dp"
-                        android:background="@color/windowBackgroundLight" />
-
-                    <EditText
-                        android:id="@+id/checkout_comments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
-                        android:maxLines="3"
-                        android:minLines="3"
-                        android:textSize="14sp"
-                        android:hint="@string/order_notes"
-                        android:padding="5dp"
-                        android:textAlignment="viewStart"
-                        android:gravity="start|top"
-                        android:textColor="@color/textColorSecondary"
-                        android:background="@color/white" />
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <TextView
-                android:id="@+id/payment_method"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/payment_method"
-                android:maxLines="1"
-                android:textSize="16sp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingStart="5dp"
-                android:paddingEnd="10dp"
-                android:clickable="true"
-                android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_down_black_24dp"
-                android:textColor="@color/textColorSecondaryDark"
-                android:background="@color/windowBackgroundLight" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_details_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="0dp"
-                card_view:cardCornerRadius="2dp"
-                card_view:cardPreventCornerOverlap="false"
-                card_view:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/payment_details"
-                        android:textSize="16sp"
-                        android:textColor="@color/textColorSecondaryDark"
-                        android:padding="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@color/windowBackgroundLight" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="0dp"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    card_view:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:background="@color/white"
                         android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/windowBackgroundLight"
+                            android:gravity="center_vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/billing_address"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="16sp" />
+
+                            <ImageButton
+                                android:id="@+id/checkout_edit_billing"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="5dp"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_edit_black_24dp"
+                                android:tint="?attr/colorPrimary" />
+
+                        </RelativeLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="5dp"
-                            android:layout_marginBottom="5dp">
+                            android:padding="5dp">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:id="@+id/billing_name"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
-                                android:layout_marginTop="15dp"
-                                android:text="@string/card_number"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-                            <EditText
-                                android:id="@+id/checkout_card_number"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/input_field_height"
-                                android:layout_marginTop="5dp"
-                                android:drawablePadding="15dp"
-                                android:drawableStart="@drawable/ic_credit_card_black_24dp"
-                                android:gravity="start|center_vertical"
-                                android:hint="@string/card_number"
-                                android:inputType="number"
-                                android:paddingEnd="15dp"
-                                android:paddingStart="15dp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textColorHint="@color/textColorSecondaryLight"
-                                android:background="@drawable/rounded_corners_edittext_light" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:layout_marginTop="15dp"
-                                android:text="@string/card_cvv"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-                            <EditText
-                                android:id="@+id/checkout_card_cvv"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/input_field_height"
-                                android:layout_marginTop="5dp"
-                                android:drawablePadding="15dp"
-                                android:drawableStart="@drawable/ic_credit_card_black_24dp"
-                                android:gravity="start|center_vertical"
-                                android:hint="@string/card_cvv"
-                                android:inputType="number"
-                                android:paddingEnd="15dp"
-                                android:paddingStart="15dp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textColorHint="@color/textColorSecondaryLight"
-                                android:background="@drawable/rounded_corners_edittext_light" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:layout_marginTop="15dp"
-                                android:text="@string/card_expiry"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-                            <EditText
-                                android:id="@+id/checkout_card_expiry"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/input_field_height"
-                                android:layout_marginTop="5dp"
-                                android:drawableEnd="@drawable/ic_keyboard_arrow_down_black_24dp"
-                                android:drawableStart="@drawable/ic_date_range_black_24dp"
-                                android:drawablePadding="15dp"
-                                android:gravity="start|center_vertical"
-                                android:hint="@string/card_expiry"
-                                android:inputType="none"
-                                android:paddingEnd="15dp"
-                                android:paddingStart="15dp"
+                                android:text="@string/full_name"
                                 android:textAlignment="viewStart"
                                 android:textColor="@color/textColorSecondary"
-                                android:textColorHint="@color/textColorSecondaryLight"
-                                android:background="@drawable/rounded_corners_edittext_light"/>
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/billing_address"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Ville"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/billing_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="@string/address"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="14sp" />
 
                         </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/checkout_paypal_btn"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="PayPal"
-                android:textSize="18sp"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="0dp"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    card_view:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/windowBackgroundLight"
+                            android:gravity="center_vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/shipping_address"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="16sp" />
+
+                            <ImageButton
+                                android:id="@+id/checkout_edit_shipping"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="5dp"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_edit_black_24dp"
+                                android:tint="?attr/colorPrimary" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:id="@+id/shipping_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="@string/full_name"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/shipping_address"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Ville"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/shipping_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="@string/address"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="0dp"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    card_view:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/windowBackgroundLight"
+                            android:gravity="center_vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/shipping_method"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="16sp" />
+
+                            <ImageButton
+                                android:id="@+id/checkout_edit_shipping_method"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="5dp"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_edit_black_24dp"
+                                android:tint="?attr/colorPrimary" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/shipping_method"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:text="@string/shipping_method"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="0dp"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    card_view:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/windowBackgroundLight"
+                            android:padding="5dp"
+                            android:text="@string/products"
+                            android:textColor="@color/textColorSecondaryDark"
+                            android:textSize="16sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/checkout_items_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- <android.support.v7.widget.CardView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:background="@color/white"
+                     android:layout_marginTop="10dp"
+                     app:cardElevation="0dp"
+                     app:cardCornerRadius="2dp"
+                     android:id="@+id/pointsCardLayer"
+                     card_view:cardCornerRadius="5dp"
+                     card_view:cardUseCompatPadding="true"
+                     card_view:cardPreventCornerOverlap="false" >
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:padding="5dp">
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_weight="1"
+                             android:text="@string/click_for_points"
+                             />
+
+                         <ImageView
+                             android:layout_width="25dp"
+                             android:layout_height="25dp"
+                             android:layout_gravity="right"
+                             android:src="@drawable/ic_action_medal"
+                             />
+
+                     </LinearLayout>
+
+                 </android.support.v7.widget.CardView>
+
+                 <android.support.v7.widget.CardView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:background="@color/white"
+                     android:layout_marginTop="10dp"
+                     app:cardElevation="0dp"
+                     app:cardCornerRadius="2dp"
+                     android:visibility="gone"
+                     android:id="@+id/pointsCardView"
+                     card_view:cardCornerRadius="2dp"
+                     card_view:cardUseCompatPadding="true"
+                     card_view:cardPreventCornerOverlap="false" >
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical">
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:text="@string/points"
+                             android:textSize="16sp"
+                             android:textColor="@color/textColorSecondaryDark"
+                             android:padding="5dp"
+                             android:background="@color/windowBackgroundLight" />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:padding="5dp" >
+
+                             <RelativeLayout
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:orientation="horizontal"
+                                 android:gravity="center_vertical" >
+
+                                 <TextView
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:maxLines="1"
+                                     android:text="@string/points_used"
+                                     android:textSize="14sp"
+                                     android:textColor="@color/textColorSecondary" />
+
+                                 <TextView
+                                     android:id="@+id/points"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:maxLines="1"
+                                     android:text="0"
+                                     android:textSize="14sp"
+                                     android:textColor="@color/textColorSecondary"
+                                     android:textAlignment="textEnd"
+                                     android:gravity="end"
+                                     android:layout_alignParentEnd="true" />
+
+                             </RelativeLayout>
+                             <RelativeLayout
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:orientation="horizontal"
+                                 android:gravity="center_vertical"
+                                 android:layout_marginTop="5dp" >
+
+                                 <TextView
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:maxLines="1"
+                                     android:text="@string/points_discount"
+                                     android:textSize="14sp"
+                                     android:textColor="@color/textColorSecondary" />
+
+                                 <TextView
+                                     android:id="@+id/point_discount"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:maxLines="1"
+                                     android:text="$00.0"
+                                     android:textSize="14sp"
+                                     android:textColor="@color/textColorSecondary"
+                                     android:textAlignment="textEnd"
+                                     android:gravity="end"
+                                     android:layout_alignParentEnd="true" />
+
+                             </RelativeLayout>
+
+                         </LinearLayout>
+
+                     </LinearLayout>
+
+                 </android.support.v7.widget.CardView>-->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="0dp"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    card_view:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/windowBackgroundLight"
+                            android:padding="5dp"
+                            android:text="@string/subtotal"
+                            android:textColor="@color/textColorSecondaryDark"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="@string/subtotal"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/checkout_subtotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="2000 Fcfa"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="@string/tax"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/checkout_tax"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="200 Fcfa"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="@string/shipping"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/checkout_shipping"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="300 Fcfa"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="@string/discount"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/checkout_discount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="100 Fcfa"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                            </RelativeLayout>
+                            <!--
+                                                    <RelativeLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal"
+                                                        android:gravity="center_vertical"
+                                                        android:layout_marginTop="5dp" >
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:maxLines="1"
+                                                            android:text="@string/points_discount"
+                                                            android:textSize="14sp"
+                                                            android:textColor="@color/textColorSecondary" />
+
+                                                        <TextView
+                                                            android:id="@+id/point_discount_subTotal"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:maxLines="1"
+                                                            android:text="$00.0"
+                                                            android:textSize="14sp"
+                                                            android:textColor="@color/textColorSecondary"
+                                                            android:textAlignment="textEnd"
+                                                            android:gravity="end"
+                                                            android:layout_alignParentEnd="true" />
+
+                                                    </RelativeLayout>-->
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="@string/total"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/checkout_total"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="3000 Fcfa"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="0dp"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    card_view:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/windowBackgroundLight"
+                            android:padding="5dp"
+                            android:text="@string/order_notes"
+                            android:textColor="@color/textColorSecondaryDark"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/checkout_comments"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="start|top"
+                            android:hint="@string/order_notes"
+                            android:inputType="textMultiLine"
+                            android:maxLines="3"
+                            android:minLines="3"
+                            android:padding="5dp"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="14sp" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/payment_method"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/windowBackgroundLight"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_down_black_24dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingStart="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/payment_method"
+                    android:textColor="@color/textColorSecondaryDark"
+                    android:textSize="16sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_details_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="0dp"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    card_view:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/windowBackgroundLight"
+                            android:padding="5dp"
+                            android:text="@string/payment_details"
+                            android:textColor="@color/textColorSecondaryDark"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
+                                    android:maxLines="1"
+                                    android:text="@string/card_number"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                                <EditText
+                                    android:id="@+id/checkout_card_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/input_field_height"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@drawable/rounded_corners_edittext_light"
+                                    android:drawableStart="@drawable/ic_credit_card_black_24dp"
+                                    android:drawablePadding="15dp"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="@string/card_number"
+                                    android:inputType="number"
+                                    android:paddingStart="15dp"
+                                    android:paddingEnd="15dp"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textColorHint="@color/textColorSecondaryLight" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
+                                    android:maxLines="1"
+                                    android:text="@string/card_cvv"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                                <EditText
+                                    android:id="@+id/checkout_card_cvv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/input_field_height"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@drawable/rounded_corners_edittext_light"
+                                    android:drawableStart="@drawable/ic_credit_card_black_24dp"
+                                    android:drawablePadding="15dp"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="@string/card_cvv"
+                                    android:inputType="number"
+                                    android:paddingStart="15dp"
+                                    android:paddingEnd="15dp"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textColorHint="@color/textColorSecondaryLight" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
+                                    android:maxLines="1"
+                                    android:text="@string/card_expiry"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="14sp" />
+
+                                <EditText
+                                    android:id="@+id/checkout_card_expiry"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/input_field_height"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@drawable/rounded_corners_edittext_light"
+                                    android:drawableStart="@drawable/ic_date_range_black_24dp"
+                                    android:drawableEnd="@drawable/ic_keyboard_arrow_down_black_24dp"
+                                    android:drawablePadding="15dp"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="@string/card_expiry"
+                                    android:inputType="none"
+                                    android:paddingStart="15dp"
+                                    android:paddingEnd="15dp"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textColorHint="@color/textColorSecondaryLight" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/checkout_paypal_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners_button_blue"
+                    android:text="PayPal"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="italic|bold" />
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/checkout_cancel_btn"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:background="@color/colorAccentGrey"
+                android:text="@string/cancel"
+                android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textStyle="italic|bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rounded_corners_button_blue" />
+                android:textSize="16sp" />
 
+            <Button
+                android:id="@+id/checkout_order_btn"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:background="?attr/colorPrimary"
+                android:text="@string/order_now"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/checkout_cancel_btn"
-            android:layout_weight=".5"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:text="@string/cancel"
-            android:textAllCaps="true"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:background="@color/colorAccentGrey" />
-
-        <Button
-            android:id="@+id/checkout_order_btn"
-            android:layout_weight=".5"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:text="@string/order_now"
-            android:textAllCaps="true"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:background="?attr/colorPrimary"/>
-
-    </LinearLayout>
 
     </LinearLayout>
 
@@ -870,8 +875,8 @@
         android:id="@+id/checkout_webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:paddingTop="10dp"/>
+        android:paddingTop="10dp"
+        android:visibility="gone" />
 
 </RelativeLayout>
 

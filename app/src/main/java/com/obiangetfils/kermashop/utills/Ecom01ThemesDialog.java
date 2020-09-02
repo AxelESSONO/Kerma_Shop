@@ -58,6 +58,8 @@ public class Ecom01ThemesDialog extends Dialog {
         listView.setAdapter(adapter);
     }
 
+
+
     public static List<ColorsModal> getcolorList() {
         List<ColorsModal> colorsModals = new ArrayList<>();
         colorsModals.add(new ColorsModal(R.style.Ecom01, "Default", R.color.black));

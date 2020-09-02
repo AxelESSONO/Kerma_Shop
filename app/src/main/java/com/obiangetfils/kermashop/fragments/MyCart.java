@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
 import com.obiangetfils.kermashop.DataSettings.MyData;
 import com.obiangetfils.kermashop.R;
@@ -177,7 +178,9 @@ public class MyCart extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int position) {
 
-            myViewHolder.cart_item_cover.setImageResource(cartItemsList.get(position).getImage());
+            //myViewHolder.cart_item_cover.setImageResource(cartItemsList.get(position).getImage());
+            Glide.with(context).load(cartItemsList.get(position).getImage()).into(myViewHolder.cart_item_cover);
+
             myViewHolder.cover_loader.setVisibility(View.GONE);
             myViewHolder.cart_item_cover.setVisibility(View.VISIBLE);
             myViewHolder.cart_item_title.setText(cartItemsList.get(position).getTitle());

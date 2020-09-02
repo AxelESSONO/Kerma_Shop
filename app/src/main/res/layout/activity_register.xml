@@ -31,15 +31,16 @@
             android:padding="20dp">
 
             <RelativeLayout
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
 
                 <com.obiangetfils.kermashop.customview.RoundedImageView
                     android:id="@+id/logoImg"
-                    android:layout_width="195dp"
-                    android:layout_height="195dp"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp"
                     android:scaleType="fitXY"
+                    android:layout_marginTop="40dp"
                     android:src="@drawable/profile"/>
 
 
@@ -213,6 +214,22 @@
                     android:textSize="@dimen/button_text_size"
                     android:background="@drawable/rounded_corners_bouton"
                     android:text="@string/register"/>
+
+                <Button
+                    android:id="@+id/facebookRegisterBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:text="@string/facebook_login"
+                    android:textSize="@dimen/button_text_size"
+                    android:textStyle="normal"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/rounded_corners_bouton"/>
 
             </LinearLayout>
 

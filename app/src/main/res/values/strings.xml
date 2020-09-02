@@ -1,23 +1,9 @@
 <resources>
     <string name="app_name">Kerma Shop</string>
     <string name="title_activity_buyer_home">BuyerHomeActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="menu_home">ACCUEIL</string>
-    <string name="menu_gallery">CATEGORIES</string>
-    <string name="menu_slideshow">BOUTIQUE</string>
-    <string name="menu_tools">MON COMPTE</string>
-    <string name="menu_share">MES COMMANDES</string>
-    <string name="menu_send">RÉCOMPENSES</string>
 
 
     <string name="products"> Produits </string>
-    <string name="view_all"> VIEW ALL </string>
 
 
     <!--  Form Strings -->
@@ -25,9 +11,7 @@
     <string name="first_name"> Prénom(s) </string>
     <string name="last_name"> NOM </string>
     <string name="username"> Nom utilisateur </string>
-    <string name="email"> Email </string>
     <string name="email_address"> Adresse Email</string>
-    <string name="mobile"> Numero de Téléphone </string>
     <string name="contact_no"> Contact No </string>
     <string name="address"> Adresse </string>
     <string name="address_1"> Address 1 </string>
@@ -39,101 +23,35 @@
     <string name="post_code"> Post Code </string>
     <string name="password"> Mot de passe </string>
     <string name="new_password"> Nouveau mot de passe </string>
-    <string name="edit_profile"> Edit Profile </string>
 
 
-    <string name="actionSearch">Rechercher</string>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <string name="loading">Recharge en cours…</string>
-    <string name="new_product">NOUVEAU</string>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <!--  Messages Strings -->
     <string name="thank_you"> Merci </string>
-    <string name="add_coupon"> Add Coupon? </string>
-    <string name="your_message"> Your Message </string>
     <string name="empty_cart"> Your Cart is Empty </string>
     <string name="record_not_found"> Aucun Enregistrement Trouvé </string>
-    <string name="item_added_to_cart"> Item Added to Cart </string>
-    <string name="added_to_favourites"> Added to Favourites </string>
-    <string name="removed_from_favourites"> Removed from Favourites </string>
-    <string name="not_a_member"> Not a Member? </string>
-    <string name="login_or_signup"> Login &amp; Register </string>
-    <string name="login_or_create_account"> Please Login or create Account </string>
     <string name="thank_you_for_shopping"> Merci de votre confiance! </string>
-    <string name="coupon_removes_other_coupons"> This coupon may remove all other coupons! </string>
 
-    <string name="forgot_your_password"> Forgot Your Password? </string>
-    <string name="forgot_password"> I\'ve forgotten my password? </string>
     <string name="already_have_account"> Vous avez déjà un compte? </string>
-    <string name="search_product_by_name"> Type Something to Search </string>
-    <string name="default_shipping"> Default Shipping Address </string>
-
-    <string name="order_placed"> Order Placed Successfully. </string>
-    <string name="order_cancelled"> Order has been cancelled successfully. </string>
-    <string name="account_updated"> Account Details has been updated successfully. </string>
-    <string name="shipping_address_update"> Shipping address has been updated successfully. </string>
-
-    <string name="permission_rejected"> Permission not Granted! </string>
-    <string name="permission_camera_storage"> Need Camera and Storage Permissions! </string>
-    <string name="permission_camera_storage_needed"> This app needs camera and storage permissions to take pictures from the gallery or with the camera. </string>
-
-    <string name="rate_now"> Rate It! </string>
-    <string name="not_now"> Not Now </string>
-    <string name="rate_app_msg"> If you enjoy using this app, it would be great to take a moment to rate it. </string>
-    <string name="tracking_number_msg"> Soon we will assign you a tracking number to track your order. </string>
 
 
     <!--  Errors Message Strings -->
-    <string name="enter_name"> Enter Your Name </string>
-    <string name="enter_city"> Enter Your City </string>
-    <string name="enter_message"> Enter Your Message </string>
-    <string name="select_zone"> Select Your Zone </string>
-    <string name="select_country"> Select Your Country </string>
-    <string name="invalid_first_name"> Invalid First Name </string>
-    <string name="invalid_last_name"> Invalid Last Name </string>
-    <string name="invalid_email"> Invalid Email Address </string>
-    <string name="invalid_password"> Invalid Password </string>
-    <string name="invalid_name"> Invalid Name </string>
-    <string name="invalid_address"> Invalid Address </string>
-    <string name="invalid_company"> Invalid Company </string>
-    <string name="invalid_contact"> Invalid Contact No. </string>
-    <string name="invalid_post_code"> Invalid Postal Code </string>
-    <string name="unexpected_response"> Unexpected Server Response </string>
-    <string name="no_internet"> Internet Connection is not Available </string>
 
 
     <!-- test -->
 
 
     <!--  Coupon Error Strings -->
-    <string name="invalid_coupon"> Invalid Coupon </string>
-    <string name="coupon_expired"> Coupon is expired! </string>
-    <string name="coupon_applied"> Coupon already applied! </string>
-    <string name="coupon_cannot_be_applied"> Coupon cannot be applied! </string>
-    <string name="coupon_used_by_you"> You have already used this Coupon! </string>
-    <string name="coupon_used_by_all"> Coupon has been used by limited users! </string>
-    <string name="coupon_is_not_for_you"> You are not applicable to use this Coupon! </string>
-    <string name="coupon_cannot_used_with_existing"> Coupon cannot be used with existing Coupon! </string>
-    <string name="coupon_is_not_for_sale_items"> Coupon cannot be used on sale items! </string>
-    <string name="coupon_is_not_for_too_many_products"> Coupon cannot be used on too many products! </string>
-    <string name="coupon_is_not_for_these_products"> Coupon is not valid for these products! </string>
-    <string name="coupon_is_not_for_these_categories"> Coupon is not valid for these category of products! </string>
-    <string name="coupon_is_not_for_excluded_products"> Coupon cannot be used on excluded products! </string>
-    <string name="coupon_is_not_for_excluded_categories"> Coupon cannot be used on excluded categories! </string>
-    <string name="coupon_max_amount_is_less_than_order_total"> Cart total does not meet the maximum amount for Coupon! </string>
-    <string name="coupon_min_amount_is_greater_than_order_total"> Cart total does not meet the minimum amount for Coupon! </string>
 
 
     <!--  App Intro Slides Strings -->
-    <string name="slide_1_title"> Home Page </string>
-    <string name="slide_2_title"> Category Page </string>
-    <string name="slide_3_title"> Shop Page </string>
-    <string name="slide_4_title"> Cart Page </string>
-    <string name="slide_5_title"> Order Page </string>
     <string name="slide_1_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
     <string name="slide_2_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
     <string name="slide_3_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
@@ -142,23 +60,9 @@
 
 
     <!--  App Settings Strings -->
-    <string name="select_language"> Select Language </string>
-    <string name="official_web"> Official Website </string>
-    <string name="share_app"> Share App </string>
-    <string name="rate_app"> Rate App </string>
     <string name="privacy_policy"> Politique de confidentialité </string>
     <string name="refund_policy"> Politique de remboursement </string>
     <string name="service_terms"> Conditions d\'utilisation </string>
-    <string name="ad_interstitial"> Interstitial Ad </string>
-
-    <string name="push_notification"> Push Notifications </string>
-    <string name="local_notification"> Local Notifications </string>
-
-    <string name="noti_desc_for_scratch_card"> Please click and scratch to win coupon </string>
-    <string name="noti_expiry"> Expire on </string>
-
-    <string name="points"> Points </string>
-    <string name="expire"> expire </string>
 
 
     <string name="app_terms_services">
@@ -182,19 +86,6 @@
     <string name="messenger_send_button_text">ENVOYER LE MESSAGE</string>
     <string name="seller_info"> Seller Information </string>
     <string name="view_store">View store</string>
-    <string name="enter_points">Enter points you want to use</string>
-    <string name="add_points">Add Points</string>
-    <string name="point_equal_to"> point is equal to</string>
-    <string name="points_used">Points used</string>
-    <string name="points_discount">Points discount</string>
-    <string name="click_for_points">Click here for applying points you earned.</string>
-    <string name="point_enter_warning">Your entered points are greater than you earned.</string>
-    <string name="check_this_out">Check this out!</string>
-    <string name="this_stuff_is_awesome">This stuff is awesome:</string>
-    <string name="copy">Copy</string>
-    <string name="added_to_clipboard">Added to clipboard</string>
-    <string name="show_more">Show more</string>
-    <string name="share_with">Share With</string>
     <string name="save_changes">Enregistrer les informations</string>
     <string name="phone_number">Votre numero de téléphone</string>
     <string name="open">Ouvrir</string>
@@ -205,20 +96,11 @@
     <string name="userphone">Numéro de téléphone</string>
     <string name="categories">Catégories</string>
     <string name="reset_filters">Réinitialiser les filtres</string>
-    <string name="Newest">Le plus récent</string>
-    <string name="actionLogout">Se déconnecter</string>
-    <string name="total_earned">Total de points gagnés</string>
-    <string name="event">Événements</string>
-    <string name="visit">Regarder nos produits</string>
-    <string name="apply">Valider le coupon</string>
-    <string name="coupon_code">Code promo</string>
     <string name="sample_coupons">Exemples de coupons</string>
     <string name="subtotal">Total</string>
     <string name="discount">Remise</string>
     <string name="total_price">Prix ​​total: </string>
     <string name="checkout">Valider</string>
-    <string name="actionHome">ACCUEIL</string>
-    <string name="actionCart">Mon Panier</string>
     <string name="NEW">Nouveau</string>
     <string name="featured">En vedette</string>
     <string name="Sale">En Vente</string>
@@ -228,10 +110,8 @@
     <string name="reviews_ratings">Notes et avis</string>
     <string name="quantity">Quantité</string>
     <string name="description">Description du produit</string>
-    <string name="additional_info">Autres informations</string>
     <string name="related_products">Vous aimeriez aussi les produits suivants...</string>
     <string name="addToCart">Ajouter au panier</string>
-    <string name="welcome">Bienvenue</string>
     <string name="Featured">Featured</string>
     <string name="all">Tout</string>
     <string name="shipping_address">Adresse de livraison</string>
@@ -269,18 +149,24 @@
     <string name="newest_product">Nouveau</string>
     <string name="super_deals_product">Promo</string>
     <string name="trend">Tendance</string>
-    <string name="hint_title">Titre</string>
-    <string name="hint_description">Description</string>
-    <string name="press_once_again_to_exit">Press once again to exit</string>
-    <string name="button_ok">OK</string>
-    <string name="permissions_not_granted">autorisations non accordées</string>
-    <string name="internet_connection_failed">Echec connexion</string>
-    <string name="account_details_will_be_displayed_here">Account details will be displayed here</string>
-    <string name="notifications_feature_yet_to_be_implemented">notifications_feature yet to be implemented</string>
-    <string name="confirm_password">Confirmer le mot de passe</string>
     <string name="label_buy_now">Payer maintenant</string>
     <string name="title_activity_home_simple">HomeSimple</string>
-    <string name="logout">Se déconnecter</string>
+    <string name="title_activity_seller_home">SellerHomeActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="home_seller">Accueil</string>
+    <string name="home_deliver">Mes gains</string>
+    <string name="user_delivery">Compte livreur</string>
+    <string name="menu_home_delivery">Accueil</string>
+    <string name="user_pickupPoint">Point retrait</string>
+    <string name="sample_image_name">image name</string>
+    <string name="facebook_login">Se connecter avec Facebook</string>
+    <string name="addToBdd">Enregistrer les images</string>
+    <string name="selectImage">Selectionner les images</string>
+    <string name="new_price">nouveau prix</string>
+    <string name="old_price">ancien prix</string>
+    <string name="cgu">En cochant ce bouton, vous acceptez notre politique générale de vente, confitialité et d\'utilisation.</string>
+    <string name="categories_name">Nom de la catégorie</string>
 
 
 </resources>

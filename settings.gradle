@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':circularstatusview'
 rootProject.name='Kerma Shop'

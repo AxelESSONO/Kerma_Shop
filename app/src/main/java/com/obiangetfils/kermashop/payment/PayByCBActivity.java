@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.braintreepayments.cardform.view.CardForm;
 import com.obiangetfils.kermashop.R;
+import com.obiangetfils.kermashop.utills.Ecom01ThemesDialog;
 
 public class PayByCBActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class PayByCBActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Ecom01ThemesDialog.getcolorList().get(Ecom01ThemesDialog.selectedTheme).getThemeID());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_by_cb);
 

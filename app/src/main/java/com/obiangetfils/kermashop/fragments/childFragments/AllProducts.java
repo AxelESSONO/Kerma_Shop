@@ -65,8 +65,8 @@ public class AllProducts extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
 
         rootView = inflater.inflate(R.layout.childfragment_products_vertical, container, false);
 
@@ -197,7 +197,6 @@ public class AllProducts extends Fragment {
             if (getArguments().containsKey("isBottomBarVisible")) {
                 isBottomBarVisible = getArguments().getBoolean("isBottomBarVisible");
             }
-
         }
     }
 }

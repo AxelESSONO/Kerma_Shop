@@ -14,6 +14,8 @@ import com.obiangetfils.kermashop.Intro.IntroScreen;
 import com.obiangetfils.kermashop.R;
 import com.obiangetfils.kermashop.utills.Ecom01ThemesDialog;
 
+import io.paperdb.Paper;
+
 public class SplashActivity extends AppCompatActivity {
 
 
