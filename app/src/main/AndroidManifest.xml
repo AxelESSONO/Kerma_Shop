@@ -17,10 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin.AddCategoryActivity"></activity>
+        <activity android:name=".login.VerifyCodeActivity"></activity>
+        <activity android:name=".Admin.AddCategoryActivity" />
         <activity android:name=".Story.StoryHomeActivity" />
-        <activity android:name=".CommonActivity.ResetPasswordActivity" />
-        <activity android:name=".Story.AddStoryActivity" />
+        <activity android:name=".login.ResetPasswordActivity" />
         <activity android:name=".PickUpPoint.PickUpPointManActivity" />
         <activity android:name=".Delivery.DeliveryManHomeActivity" />
         <activity
@@ -32,12 +32,12 @@
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".Intro.IntroScreen" />
         <activity android:name=".Buyer.DisplayProductMatchingCategoryActivity" />
-        <activity android:name=".CommonActivity.RegisterActivity" />
+        <activity android:name=".login.RegisterActivity" />
         <activity android:name=".Admin.CheckNewOrderActivity" />
         <activity android:name=".Admin.AdminMaintainProductsActivity" />
         <activity android:name=".Admin.AddNewProductActivity" />
         <activity android:name=".Admin.AdminHomeActivity" />
-        <activity android:name=".Buyer.LoginActivity" />
+        <activity android:name=".login.LoginActivity" />
         <activity android:name=".Buyer.BuyerProfilActivity" />
         <activity
             android:name=".Buyer.BuyerHomeActivity"

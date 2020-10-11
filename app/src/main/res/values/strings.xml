@@ -167,6 +167,7 @@
     <string name="old_price">ancien prix</string>
     <string name="cgu">En cochant ce bouton, vous acceptez notre politique générale de vente, confitialité et d\'utilisation.</string>
     <string name="categories_name">Nom de la catégorie</string>
+    <string name="continuer">Continuer</string>
 
 
 </resources>

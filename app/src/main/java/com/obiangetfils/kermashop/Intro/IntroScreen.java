@@ -5,33 +5,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import com.github.paolorotolo.appintro.AppIntro;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.obiangetfils.kermashop.Admin.AdminHomeActivity;
 import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
-import com.obiangetfils.kermashop.Buyer.LoginActivity;
-import com.obiangetfils.kermashop.CommonActivity.RegisterActivity;
-import com.obiangetfils.kermashop.Delivery.DeliveryManHomeActivity;
-import com.obiangetfils.kermashop.PickUpPoint.PickUpPointManActivity;
+import com.obiangetfils.kermashop.login.LoginActivity;
+import com.obiangetfils.kermashop.login.RegisterActivity;
 import com.obiangetfils.kermashop.Prevalent.Prevalent;
 import com.obiangetfils.kermashop.R;
-import com.obiangetfils.kermashop.Sellers.SellerHomeActivity;
-import com.obiangetfils.kermashop.models.AdminModel;
 import com.obiangetfils.kermashop.models.UserOBJ;
 import com.obiangetfils.kermashop.utills.Ecom01ThemesDialog;
-
 import io.paperdb.Paper;
-
 
 public class IntroScreen extends AppIntro {
 
@@ -65,7 +56,8 @@ public class IntroScreen extends AppIntro {
         setColorSkipButton(ContextCompat.getColor(IntroScreen.this, R.color.colorPrimary));
         setNextArrowColor(ContextCompat.getColor(IntroScreen.this, R.color.colorPrimary));
 
-        setIndicatorColor(ContextCompat.getColor(IntroScreen.this, R.color.colorPrimary), ContextCompat.getColor(IntroScreen.this, R.color.iconsLight));
+        setIndicatorColor(ContextCompat.getColor(IntroScreen.this, R.color.colorPrimary),
+                ContextCompat.getColor(IntroScreen.this, R.color.iconsLight));
         setSkipText("IGNORER");
 
     }
@@ -92,7 +84,7 @@ public class IntroScreen extends AppIntro {
         }
 
 
-        Intent intent = new Intent(IntroScreen.this, RegisterActivity.class);
+        Intent intent = new Intent(IntroScreen.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
@@ -101,44 +93,6 @@ public class IntroScreen extends AppIntro {
 
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
-
-        if (parentDbName.equals("Admins")) {
-
-            RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(parentDbName).child(phone).exists()) {
-
-                        String adminFirstName = dataSnapshot.child(parentDbName).child(phone).child("adminFirstName").getValue(String.class);
-                        String adminName = dataSnapshot.child(parentDbName).child(phone).child("adminName").getValue(String.class);
-                        String adminPassword = dataSnapshot.child(parentDbName).child(phone).child("adminPassword").getValue(String.class);
-                        String adminPhone = dataSnapshot.child(parentDbName).child(phone).child("adminPhoneNumber").getValue(String.class);
-
-                        AdminModel adminData = new AdminModel(adminFirstName, adminName, adminPassword, adminPhone);
-
-                        if (adminData.getAdmin_phone().equals(phone)) {
-                            if (adminData.getAdmin_password().equals(password)) {
-
-                                Toast.makeText(IntroScreen.this, "Vous êtes désormais connecté", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-                                Intent intent = new Intent(IntroScreen.this, AdminHomeActivity.class);
-                                Prevalent.currentOnLineAdmin = adminData;
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(IntroScreen.this, "Mot de passe ou numéro de téléphone incorrect", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(IntroScreen.this, "Mot de passe ou numéro de téléphone incorrect", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(IntroScreen.this, "Connexion annulée", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
 
         if (parentDbName.equals("Users")) {
 
@@ -195,19 +149,6 @@ public class IntroScreen extends AppIntro {
             Intent intent = new Intent(IntroScreen.this, BuyerHomeActivity.class);
             Prevalent.currentOnLineUser = userData;
             startActivity(intent);
-        } else if (userData.getUser_type().equals("Commerçant")) {
-            //Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
-            Intent intent = new Intent(IntroScreen.this, SellerHomeActivity.class);
-            Prevalent.currentOnLineUser = userData;
-            startActivity(intent);
-        } else if (userData.getUser_type().equals("Livreur")) {
-            Intent intent = new Intent(IntroScreen.this, DeliveryManHomeActivity.class);
-            Prevalent.currentOnLineUser = userData;
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(IntroScreen.this, PickUpPointManActivity.class);
-            Prevalent.currentOnLineUser = userData;
-            startActivity(intent);
         }
     }
 
@@ -231,7 +172,6 @@ public class IntroScreen extends AppIntro {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
         // Finish this Activity
         finish();
     }

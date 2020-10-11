@@ -1,4 +1,4 @@
-package com.obiangetfils.kermashop.CommonActivity;
+package com.obiangetfils.kermashop.login;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -36,12 +36,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
-import com.obiangetfils.kermashop.Buyer.LoginActivity;
-import com.obiangetfils.kermashop.Delivery.DeliveryManHomeActivity;
-import com.obiangetfils.kermashop.PickUpPoint.PickUpPointManActivity;
 import com.obiangetfils.kermashop.Prevalent.Prevalent;
 import com.obiangetfils.kermashop.R;
-import com.obiangetfils.kermashop.Sellers.SellerHomeActivity;
 import com.obiangetfils.kermashop.models.UserOBJ;
 import com.obiangetfils.kermashop.utills.Ecom01ThemesDialog;
 
@@ -332,18 +328,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (userOBJ.getUser_type().equals("Acheteur")) {
             Intent intent = new Intent(RegisterActivity.this, BuyerHomeActivity.class);
-            Prevalent.currentOnLineUser = userOBJ;
-            startActivity(intent);
-        } else if (userOBJ.getUser_type().equals("Commerçant")) {
-            Intent intent = new Intent(RegisterActivity.this, SellerHomeActivity.class);
-            Prevalent.currentOnLineUser = userOBJ;
-            startActivity(intent);
-        } else if (userOBJ.getUser_type().equals("Livreur")) {
-            Intent intent = new Intent(RegisterActivity.this, DeliveryManHomeActivity.class);
-            Prevalent.currentOnLineUser = userOBJ;
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(RegisterActivity.this, PickUpPointManActivity.class);
             Prevalent.currentOnLineUser = userOBJ;
             startActivity(intent);
         }

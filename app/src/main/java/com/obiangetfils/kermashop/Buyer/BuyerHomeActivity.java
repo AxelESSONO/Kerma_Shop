@@ -18,8 +18,6 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,22 +34,19 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.FirebaseDatabase;
 import com.obiangetfils.kermashop.BuildConfig;
 import com.obiangetfils.kermashop.DataSettings.MyData;
-import com.obiangetfils.kermashop.Delivery.DeliveryManHomeActivity;
-import com.obiangetfils.kermashop.Intro.IntroScreen;
 import com.obiangetfils.kermashop.Interface.RightMenuClick;
-import com.obiangetfils.kermashop.PickUpPoint.PickUpPointManActivity;
+import com.obiangetfils.kermashop.Intro.IntroScreen;
 import com.obiangetfils.kermashop.Prevalent.Prevalent;
 import com.obiangetfils.kermashop.R;
-import com.obiangetfils.kermashop.Sellers.SellerHomeActivity;
 import com.obiangetfils.kermashop.Story.StoryHomeActivity;
 import com.obiangetfils.kermashop.fragments.Category;
 import com.obiangetfils.kermashop.fragments.MyCart;
 import com.obiangetfils.kermashop.fragments.SearchFragment;
 import com.obiangetfils.kermashop.fragments.childFragments.AllProducts;
 import com.obiangetfils.kermashop.fragments.childFragments.Product;
+import com.obiangetfils.kermashop.login.LoginActivity;
 import com.obiangetfils.kermashop.utills.DrawerLocker;
 import com.obiangetfils.kermashop.utills.Ecom01ThemesDialog;
 
@@ -68,10 +63,6 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
     private NavigationView navigationView, navigationView_right;
     private ExpandableListView main_drawer_list;
     private TextView userName, userPhone;
-    private String[] typeOfUser = {"Acheteur", "Commerçant", "Livreur", "Point Retrait"};
-    private String typeUSER;
-    
-    private Dialog myDialog;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private FloatingActionButton floatingActionButton;
 
@@ -111,7 +102,6 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
         main_drawer_list = findViewById(R.id.main_drawer_list);
         drawer_header = findViewById(R.id.drawer_header);
         user_image = findViewById(R.id.drawer_profile_image);
-        myDialog = new Dialog(this);
 
         userName = findViewById(R.id.drawer_profile_name);
         userPhone = findViewById(R.id.drawer_profile_phone);
@@ -129,84 +119,7 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
             floatingActionButton.setImageDrawable(res);
         }
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String userType = Prevalent.currentOnLineUser.getUser_type();
-
-                if(userType.equals("Acheteur")){
-
-                    showPopup(Prevalent.currentOnLineUser.getUser_phone());
-
-                } else if(userType.equals("Commerçant")){
-
-                    Intent sellerIntent = new Intent(BuyerHomeActivity.this, SellerHomeActivity.class);
-                    startActivity(sellerIntent);
-
-                } else if(userType.equals("Livreur")){
-
-                    Intent deliveryIntent = new Intent(BuyerHomeActivity.this, DeliveryManHomeActivity.class);
-                    startActivity(deliveryIntent);
-
-                } else if(userType.equals("Point Retrait")){
-
-                    Intent deliveryIntent = new Intent(BuyerHomeActivity.this, PickUpPointManActivity.class);
-                    startActivity(deliveryIntent);
-
-                } else {
-                    Toast.makeText(BuyerHomeActivity.this, "Utlisateur non identifié", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
-
-    public void showPopup(final String phone) {
-
-        myDialog.setContentView(R.layout.custompopup);
-        RadioGroup radioGroup = (RadioGroup) myDialog.findViewById(R.id.radio_group_popup);
-        final RadioButton sellerRadio = (RadioButton) myDialog.findViewById(R.id.seller_popup);
-        final RadioButton deliver = (RadioButton) myDialog.findViewById(R.id.livreur_popup);
-        final RadioButton withdrawalPoint = (RadioButton) myDialog.findViewById(R.id.point_retrait_popup);
-        Button closePopup = (Button) myDialog.findViewById(R.id.close_popup);
-        Button validatePopup = (Button) myDialog.findViewById(R.id.validate_popup);
-        closePopup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
-            }
-        });
-
-        validatePopup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (sellerRadio.isChecked()) {
-                    BuyerHomeActivity.this.typeUSER = typeOfUser[1];
-                } else if (deliver.isChecked()) {
-                    BuyerHomeActivity.this.typeUSER = typeOfUser[2];
-                } else if (withdrawalPoint.isChecked()) {
-                    BuyerHomeActivity.this.typeUSER = typeOfUser[3];
-                } else {
-                    BuyerHomeActivity.this.typeUSER = typeOfUser[0];
-                }
-                validate(phone,typeUSER);
-                myDialog.dismiss();
-            }
-        });
-        myDialog.show();
-    }
-
-    private void validate(String phone, String typeUSER) {
-
-        Prevalent.currentOnLineUser.setUser_type(typeUSER);
-        final FirebaseDatabase firebaseDatabaseUpdate = FirebaseDatabase.getInstance();
-        firebaseDatabaseUpdate.getReference().child("Users").child(phone).child("userType").setValue(typeUSER);
-        if (!Prevalent.currentOnLineUser.getUser_type().equals("Acheteur")){
-            String updateUri = "@drawable/ic_specific_account";
-            floatingActionButton.setImageDrawable(getResources().getDrawable(getResources().getIdentifier(updateUri, null, getPackageName())));
-        }
-    }
-
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
@@ -257,7 +170,6 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
                 } else {
                     actionBar.setTitle("Kerma Shop");
                     setDrawerEnabled(true);
-
                 }
             }
         });
@@ -270,12 +182,7 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
         });
 
         TextView drawer_profile_name = findViewById(R.id.drawer_profile_name);
-        //TextView drawer_profile_email = findViewById(R.id.drawer_profile_email);
-
-        //drawer_profile_name.setText(getString(R.string.login_or_signup));
         drawer_profile_name.setText(Prevalent.getCurrentOnLineUser(Prevalent.currentOnLineUser.getUser_phone(), getApplicationContext()).getUser_firstname());
-        // drawer_profile_email.setText(getString(R.string.login_or_create_account));
-
     }
 
     private void setupRightNevigationItem() {
