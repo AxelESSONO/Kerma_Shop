@@ -79,7 +79,7 @@ public class Checkout extends Fragment {
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.childfragment_checkout, container, false);
 
-        ((BuyerHomeActivity) Objects.requireNonNull(getActivity())).setDrawerEnabled(false);
+        ((BuyerHomeActivity) requireActivity()).setDrawerEnabled(false);
         Objects.requireNonNull(((BuyerHomeActivity) getActivity()).getSupportActionBar()).setTitle("Address");
 
         checkout_order_btn = rootView.findViewById(R.id.checkout_order_btn);
@@ -218,13 +218,13 @@ public class Checkout extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
             final MyViewHolder holder2 = myViewHolder;
-            holder2.checkout_item_title.setText(cartItemsList.get(position).getTitle());
+            //holder2.checkout_item_title.setText(cartItemsList.get(position).getTitle());
             holder2.cover_loader.setVisibility(View.GONE);
             holder2.cart_item_cover.setVisibility(View.VISIBLE);
             //holder2.cart_item_cover.setImageResource(cartItemsList.get(position).getImage());
 
-            Glide.with(getContext()).load(cartItemsList.get(position).getImage()).into(holder2.cart_item_cover);
-            holder2.checkout_item_price.setText(cartItemsList.get(position).getNewPrice());
+            //Glide.with(getContext()).load(cartItemsList.get(position).getImage()).into(holder2.cart_item_cover);
+            //holder2.checkout_item_price.setText(cartItemsList.get(position).getNewPrice());
         }
 
         @Override

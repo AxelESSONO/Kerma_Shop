@@ -175,9 +175,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -195,7 +198,7 @@
                 android:text="ENVOYER UN NOUVEAU CODE"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="15sp"/>
+                android:textSize="14sp"/>
 
         </LinearLayout>
 
@@ -204,10 +207,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:background="@drawable/border_black"
             android:text="Verifier"

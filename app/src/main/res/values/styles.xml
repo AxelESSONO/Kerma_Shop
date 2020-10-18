@@ -20,9 +20,9 @@
 
     <!-- Color Themes For Components -->
     <style name="Ecom01" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/black</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimaryLight</item>
     </style>
 
     <style name="TemplateTheme1" parent="Theme.AppCompat.Light.NoActionBar">
@@ -77,6 +77,17 @@
         <item name="colorPrimary">@color/light_green_500</item>
         <item name="colorPrimaryDark">@color/light_green_700</item>
         <item name="colorAccent">@color/light_green_500</item>
+    </style>
+
+    <style name="TemplateTheme11" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+    </style>
+
+    <style name="KermaTheme">
+        <item name="android:textColor">@color/fontColor</item>
+        <item name="android:textSize">@dimen/font_p</item>
     </style>
 
 </resources>

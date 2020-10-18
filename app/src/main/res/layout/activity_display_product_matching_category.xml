@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="10"
+    android:orientation="horizontal"
     tools:context=".Buyer.DisplayProductMatchingCategoryActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.athbk.ultimatetablayout.UltimateTabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        app:tab_resource_font="font/Roboto-BoldItalic.ttf"
+        app:tab_orientation="vertical"
+        app:tab_style="sliding"
+        app:tab_position_icon="icon_left"
+        app:tab_under_line_color="@color/colorPrimaryDark"
+        app:tab_text_size="15"
+        app:tab_height_under_line="2dp"
+        app:tab_width="100dp"
+        app:tab_text_color="@color/black"
+        app:tab_badge="number"
+        app:tab_under_line_show="true"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="2dp"
+        android:layout_weight="7">
+
+    </androidx.viewpager.widget.ViewPager>
+
+</LinearLayout>

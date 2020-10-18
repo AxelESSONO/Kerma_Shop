@@ -84,7 +84,7 @@ public class AllProductsHorizontal extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                switch (shortType){
+             /*   switch (shortType){
                     case "Newest":
                         addProducts(MyData.getDummyNewstProducts());
 
@@ -110,7 +110,7 @@ public class AllProductsHorizontal extends Fragment {
                                 .load(R.drawable.ic_list)
                                 .into(products_horizontal_header_icon);
                         break;
-                }
+                }*/
                 loadingProgress.setVisibility(View.GONE);
             }
         }, 500);

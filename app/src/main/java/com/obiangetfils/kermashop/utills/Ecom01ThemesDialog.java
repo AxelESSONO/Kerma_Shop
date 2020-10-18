@@ -16,7 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.obiangetfils.kermashop.Buyer.SplashActivity;
+import com.obiangetfils.kermashop.login.SplashActivity;
 import com.obiangetfils.kermashop.R;
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class Ecom01ThemesDialog extends Dialog {
 
     public static List<ColorsModal> getcolorList() {
         List<ColorsModal> colorsModals = new ArrayList<>();
-        colorsModals.add(new ColorsModal(R.style.Ecom01, "Default", R.color.black));
+        colorsModals.add(new ColorsModal(R.style.Ecom01, "Default", R.color.colorPrimaryDark));
         colorsModals.add(new ColorsModal(R.style.TemplateTheme1, "Red", R.color.red_500));
         colorsModals.add(new ColorsModal(R.style.TemplateTheme2, "Deep purple", R.color.deep_purple_500));
         colorsModals.add(new ColorsModal(R.style.TemplateTheme3, "Light Blue", R.color.light_blue_500));
@@ -72,6 +72,7 @@ public class Ecom01ThemesDialog extends Dialog {
         colorsModals.add(new ColorsModal(R.style.TemplateTheme8, "Indigo", R.color.indigo_500));
         colorsModals.add(new ColorsModal(R.style.TemplateTheme9, "Cyan", R.color.cyan_500));
         colorsModals.add(new ColorsModal(R.style.TemplateTheme10, "Light Green", R.color.light_green_500));
+        colorsModals.add(new ColorsModal(R.style.TemplateTheme11, "Black", R.color.black));
 
         return colorsModals;
     }

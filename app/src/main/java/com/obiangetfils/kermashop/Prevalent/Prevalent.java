@@ -2,6 +2,7 @@ package com.obiangetfils.kermashop.Prevalent;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -10,13 +11,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.obiangetfils.kermashop.models.AdminModel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.obiangetfils.kermashop.models.ImagesProducts;
+import com.obiangetfils.kermashop.models.ProductOBJ;
 import com.obiangetfils.kermashop.models.UserOBJ;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class Prevalent
-{
+public class Prevalent {
     public static final String UserPhoneKey = "UserPhone";
     public static final String UserPasswordKey = "UserPassword";
 
@@ -31,7 +38,6 @@ public class Prevalent
     private static final String USER_CHILD = "Users";
     private static final String USER_IMAGE = "userImage";
     public static UserOBJ currentOnLineUser;
-    public static AdminModel currentOnLineAdmin;
 
 
     public static UserOBJ getCurrentOnLineUser(final String phone, final Context context) {
@@ -90,4 +96,5 @@ public class Prevalent
 
         return userOBJ;
     }
+
 }

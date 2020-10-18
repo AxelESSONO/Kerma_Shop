@@ -10,7 +10,6 @@
         android:layout_height="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="6dp"
-        android:tint="?attr/colorPrimary"
         android:src="@drawable/ic_list"/>
 
     <TextView

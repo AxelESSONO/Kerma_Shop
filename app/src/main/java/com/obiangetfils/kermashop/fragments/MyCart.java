@@ -62,12 +62,11 @@ public class MyCart extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_my_cart, container, false);
 
-        ((BuyerHomeActivity) Objects.requireNonNull(getActivity())).setDrawerEnabled(false);
+        ((BuyerHomeActivity) requireActivity()).setDrawerEnabled(false);
 
         // Set title bar
         ((BuyerHomeActivity) getActivity()).setActionBarTitle("Cart");
@@ -179,12 +178,12 @@ public class MyCart extends Fragment {
         public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int position) {
 
             //myViewHolder.cart_item_cover.setImageResource(cartItemsList.get(position).getImage());
-            Glide.with(context).load(cartItemsList.get(position).getImage()).into(myViewHolder.cart_item_cover);
+            //Glide.with(context).load(cartItemsList.get(position).getImage()).into(myViewHolder.cart_item_cover);
 
             myViewHolder.cover_loader.setVisibility(View.GONE);
             myViewHolder.cart_item_cover.setVisibility(View.VISIBLE);
-            myViewHolder.cart_item_title.setText(cartItemsList.get(position).getTitle());
-            myViewHolder.cart_item_category.setText(MyData.getDummyCategories().get(cartItemsList.get(position).getCategoryID()).getName());
+            //myViewHolder.cart_item_title.setText(cartItemsList.get(position).getTitle());
+            //myViewHolder.cart_item_category.setText(MyData.getDummyCategories().get(cartItemsList.get(position).getCategoryID()).getName());
 
 
             // Decrease Product Quantity
@@ -208,12 +207,12 @@ public class MyCart extends Fragment {
             });
 
             // View Product Details
-            myViewHolder.cart_item_viewBtn.setOnClickListener(new View.OnClickListener() {
+        /*    myViewHolder.cart_item_viewBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     gotoProductDetails(MyData.getDummyProductList().get(position).getID());
                 }
-            });
+            });*/
 
             // Delete relevant Product from Cart
             myViewHolder.cart_item_removeBtn.setOnClickListener(new View.OnClickListener() {

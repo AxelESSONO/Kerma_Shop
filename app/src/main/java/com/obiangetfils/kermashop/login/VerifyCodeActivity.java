@@ -19,11 +19,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
 import com.obiangetfils.kermashop.R;
+import com.obiangetfils.kermashop.models.UserOBJ;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class VerifyCodeActivity extends AppCompatActivity {
@@ -36,6 +44,8 @@ public class VerifyCodeActivity extends AppCompatActivity {
 
     private EditText inputCode1, inputCode2, inputCode3, inputCode4, inputCode5, inputCode6;
     private TextView resendTxt;
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +68,9 @@ public class VerifyCodeActivity extends AppCompatActivity {
         inputCode4 = (EditText) findViewById(R.id.inputCode4);
         inputCode5 = (EditText) findViewById(R.id.inputCode5);
         inputCode6 = (EditText) findViewById(R.id.inputCode6);
+
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         setUpOTPInputs();
 
@@ -102,6 +115,14 @@ public class VerifyCodeActivity extends AppCompatActivity {
                                             editor.putBoolean("IS_CONNECTED", true);
                                             editor.commit();
 
+                                            FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                                            String user_phone, user_id;
+                                            user_phone = phoneNumber;
+                                            user_id = currentUser.getUid();
+
+                                            saveUserInformation(user_phone, user_id);
+
                                             Intent mainActivityIntent = new Intent(VerifyCodeActivity.this, BuyerHomeActivity.class);
                                             mainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(mainActivityIntent);
@@ -128,7 +149,6 @@ public class VerifyCodeActivity extends AppCompatActivity {
 
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-
                             }
 
                             @Override
@@ -139,11 +159,48 @@ public class VerifyCodeActivity extends AppCompatActivity {
                             @Override
                             public void onCodeSent(@NonNull String newVerificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 verificationId = newVerificationId;
-                                Toast.makeText(VerifyCodeActivity.this, "Nouveau code envoyé !", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(VerifyCodeActivity.this, "Nouveau code envoyé", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
         });
+    }
+
+    private void saveUserInformation(final String user_phone, final String user_id) {
+
+        databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!(dataSnapshot.child("Users").child(user_id).exists())) {
+
+                    HashMap<String, Object> userdataMap = new HashMap<>();
+                    userdataMap.put("userPhone", user_phone);
+                    userdataMap.put("userID", user_id);
+                    databaseReference.child("Users").child(user_phone)
+                            .updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(VerifyCodeActivity.this, "Félicitation, votre compte a été créé avec succès.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(VerifyCodeActivity.this, "Problème de réseau, veuillez vous connecter à internet.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                } else {
+                    Toast.makeText(VerifyCodeActivity.this, "Un compte existe déjà avec ce numéro", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(VerifyCodeActivity.this, "Une erreur est survenue, veuillez réessayer ultérieurement", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void setUpOTPInputs() {
@@ -234,7 +291,6 @@ public class VerifyCodeActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
     }

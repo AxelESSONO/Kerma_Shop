@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
 import com.obiangetfils.kermashop.login.LoginActivity;
-import com.obiangetfils.kermashop.login.RegisterActivity;
 import com.obiangetfils.kermashop.Prevalent.Prevalent;
 import com.obiangetfils.kermashop.R;
 import com.obiangetfils.kermashop.models.UserOBJ;
@@ -156,7 +155,7 @@ public class IntroScreen extends AppIntro {
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
 
-        Intent intent = new Intent(IntroScreen.this, RegisterActivity.class);
+        Intent intent = new Intent(IntroScreen.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

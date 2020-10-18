@@ -20,7 +20,7 @@
     <!--//////////////////////// Product Card Large ////////////////////////-->
 
     <dimen name="lg_card_cover_height">250dp</dimen>
-    <dimen name="lg_card_btn_height">22dp</dimen>
+    <dimen name="lg_card_btn_height">30dp</dimen>
     <dimen name="lg_card_btn_text">14sp</dimen>
     <dimen name="lg_card_btn_margin">5dp</dimen>
 
@@ -63,7 +63,8 @@
 
     <dimen name="sm_card_cover_width">144dp</dimen>
     <dimen name="sm_card_cover_height">147dp</dimen>
+    <dimen name="cardViewRadius">5dp</dimen>
 
-    <!--//////////////////////// Product Card Large ////////////////////////-->
+    <dimen name="font_p">15sp</dimen>
 
 </resources>

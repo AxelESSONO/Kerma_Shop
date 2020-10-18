@@ -20,9 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
-import com.obiangetfils.kermashop.Prevalent.Prevalent;
 import com.obiangetfils.kermashop.R;
-import com.obiangetfils.kermashop.Sellers.SellerHomeActivity;
 import com.obiangetfils.kermashop.adapters.StoryAdapter;
 import com.obiangetfils.kermashop.models.StoryOBJ;
 

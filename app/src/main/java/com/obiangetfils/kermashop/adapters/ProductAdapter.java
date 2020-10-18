@@ -3,6 +3,7 @@ package com.obiangetfils.kermashop.adapters;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -28,6 +27,7 @@ import com.obiangetfils.kermashop.R;
 import com.obiangetfils.kermashop.fragments.childFragments.ProductDescription;
 import com.obiangetfils.kermashop.models.ProductOBJ;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
@@ -46,15 +46,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     private Boolean isHorizontal;
     private String shortType;
     private List<ProductOBJ> productList;
-    MyData myData;
 
     public ProductAdapter(Context context, List<ProductOBJ> productList, Boolean isHorizontal, String shortType) {
         this.context = context;
         this.productList = productList;
         this.isHorizontal = isHorizontal;
         this.shortType = shortType;
-
-        myData = new MyData(context);
     }
 
     @Override
@@ -69,7 +66,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     .inflate(isGridView ? R.layout.item_product_grid_lg : R.layout.item_product_list_lg, parent, false);
         }
 
-
         // Return a new holder instance
         return new MyViewHolder(itemView);
     }
@@ -77,100 +73,53 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-
-
         this.holder = holder;
         // Get the data model based on Position
+
         final ProductOBJ product = productList.get(position);
 
-        holder.product_checked.setVisibility(myData.isCartContains(product.getID()) ? View.VISIBLE : View.GONE);
         Glide.with(context)
-                .load(product.getImage())
+                .load(product.getImagesProductsList().get(0).getImageUri())
                 .into(holder.product_cover);
-        holder.product_title.setText(product.getTitle());
+        holder.product_title.setText(product.getPname());
 
-        holder.product_tag_new.setVisibility(product.isNewTag() ? View.VISIBLE : View.GONE);
-        holder.product_tag_sale.setVisibility(product.isSaleTag() ? View.VISIBLE : View.GONE);
-        holder.product_tag_featured.setVisibility(product.isFeaturedTag() ? View.VISIBLE : View.GONE);
+        if (product.getOldPrice().equals("0")){
+            holder.product_price_strike.setVisibility(View.GONE);
+        }else {
+            holder.product_price_strike.setText(product.getOldPrice()+ " "+ context.getString(R.string.currency_xaf));
+        }
+        holder.currentPrice.setText(product.getCurrentPrice()+ " " + context.getString(R.string.currency_xaf));
 
         holder.product_like_btn.setOnCheckedChangeListener(null);
-        holder.product_like_btn.setChecked(product.isFavTag());
 
         holder.product_like_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.product_like_btn.isChecked()) {
+                if (holder.product_like_btn.isChecked()) {
                     holder.product_like_btn.setChecked(true);
-                    myData.addToFavProducts(product);
                     Snackbar.make(view, "Produit ajouté aux favories", Snackbar.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     holder.product_like_btn.setChecked(false);
-                    myData.removeFromFavProducts(product);
                     Snackbar.make(view, "Produit retiré des favories", Snackbar.LENGTH_SHORT).show();
                 }
-            }
-        });
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickListener(position, product.getID(), ADD_TO_CART);
             }
         });
 
         holder.mainCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener(position, product.getID(), ITEM_CARD);
+                gotoProductDetails(product);
             }
         });
 
         holder.product_cover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener(position, product.getID(), ITEM_CARD);
+                gotoProductDetails(product);
             }
         });
 
-        if (product.getDefaultStock() == 0){
-            holder.product_add_cart_btn.setText("OUT OF STOCK");
-            holder.product_add_cart_btn.setBackground(ContextCompat.getDrawable(context, R.drawable.rounded_corners_button_red));
-            holder.product_add_cart_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clickListener(position, product.getID(), OUT_OF_STOCK_BUTTON);
-                }
-            });
-
-        }
-
-        if (product.getProductType().equals("Variable")) {
-            holder.product_add_cart_btn.setText("View Product");
-            holder.product_add_cart_btn.setBackground(ContextCompat.getDrawable(context, R.drawable.rounded_corners_button_green));
-            holder.product_add_cart_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clickListener(position, product.getID(), VIEW_PRODUCT_BUTTON);
-                }
-            });
-        }
-
-        if (shortType.equals("Recent")){
-            holder.product_add_cart_btn.setVisibility(View.VISIBLE);
-            holder.product_add_cart_btn.setText("Remove");
-            holder.product_add_cart_btn.setBackground(ContextCompat.getDrawable(context, R.drawable.rounded_corners_button_red));
-            holder.product_add_cart_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clickListener(position, product.getID(), REMOVE_BUTTON);
-                }
-            });
-        }
-
-        holder.product_price_strike.setText(myData.getDummyProductById(product.getID()).getOldPrice());
         holder.product_price_strike.setPaintFlags(holder.product_price_strike.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
 
     }
 
@@ -190,7 +139,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         Button product_add_cart_btn;
         ToggleButton product_like_btn;
         ImageView product_cover, product_checked, product_tag_new;
-        TextView product_title, product_tag_sale, product_tag_featured, product_price_strike;
+        TextView product_title, product_tag_sale, product_tag_featured, product_price_strike, currentPrice;
 
 
         public MyViewHolder(final View itemView) {
@@ -203,44 +152,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             product_tag_new = itemView.findViewById(R.id.product_tag_new);
             product_title = itemView.findViewById(R.id.product_title);
             product_price_strike = itemView.findViewById(R.id.product_price_strike);
+            currentPrice = itemView.findViewById(R.id.currentPrice);
             product_tag_sale = itemView.findViewById(R.id.product_tag_sale);
             product_tag_featured = itemView.findViewById(R.id.product_tag_featured);
             product_add_cart_btn = itemView.findViewById(R.id.product_card_Btn);
             product_like_btn = itemView.findViewById(R.id.product_like_btn);
         }
-
     }
 
-    private void clickListener(int position, int productID, String clickType){
-        switch (clickType) {
-            case ADD_TO_CART:
-                myData.addToCartProduct(productList.get(position));
-                holder.product_checked.setVisibility(View.VISIBLE);
-                Toast.makeText(context, "Produit ajouté au panier", Toast.LENGTH_SHORT).show();
-                break;
-            case ITEM_CARD:
-                gotoProductDetails(productID);
-                break;
-            case FAV_BUTTON:
-                Toast.makeText(context, "Fav Button", Toast.LENGTH_SHORT).show();
-                break;
-            case REMOVE_BUTTON:
-                Toast.makeText(context, "Remove Button", Toast.LENGTH_SHORT).show();
-                break;
-            case VIEW_PRODUCT_BUTTON:
-                gotoProductDetails(productID);
-                break;
-            case OUT_OF_STOCK_BUTTON:
-                gotoProductDetails(productID);
-                break;
-        }
-    }
-
-    private void gotoProductDetails(int productID) {
+    private void gotoProductDetails(ProductOBJ productOBJ) {
 
         Fragment fragment = new ProductDescription();
         Bundle bundle = new Bundle();
-        bundle.putInt("clickedProductId", productID);
+
+        bundle.putParcelable("PRODUCT_DETAIL_BUNDLE",  productOBJ);
+        bundle.putParcelableArrayList("ALL_PRODUCT", (ArrayList<? extends Parcelable>) productList);
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = ((BuyerHomeActivity) context).getSupportFragmentManager();
         fragmentManager.beginTransaction()

@@ -63,12 +63,10 @@ public class Home7 extends Fragment {
         b.putBoolean("isMenuItem", false);
         f.setArguments(b);
         getFragmentManager().beginTransaction().replace(R.id.frame_category7, f).commit();
-
     }
 
     private void setupViewPagerOne(ViewPager viewPager)
     {
-
         Bundle newBundle = new Bundle();
         newBundle.putBoolean("isHeaderVisible", false);
 

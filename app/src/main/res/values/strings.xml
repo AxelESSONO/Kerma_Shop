@@ -2,10 +2,7 @@
     <string name="app_name">Kerma Shop</string>
     <string name="title_activity_buyer_home">BuyerHomeActivity</string>
 
-
     <string name="products"> Produits </string>
-
-
     <!--  Form Strings -->
     <string name="full_name"> NOM </string>
     <string name="first_name"> Prénom(s) </string>
@@ -24,15 +21,9 @@
     <string name="password"> Mot de passe </string>
     <string name="new_password"> Nouveau mot de passe </string>
 
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-
-
     <!--  Messages Strings -->
     <string name="thank_you"> Merci </string>
     <string name="empty_cart"> Your Cart is Empty </string>
@@ -40,16 +31,6 @@
     <string name="thank_you_for_shopping"> Merci de votre confiance! </string>
 
     <string name="already_have_account"> Vous avez déjà un compte? </string>
-
-
-    <!--  Errors Message Strings -->
-
-
-    <!-- test -->
-
-
-    <!--  Coupon Error Strings -->
-
 
     <!--  App Intro Slides Strings -->
     <string name="slide_1_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
@@ -109,8 +90,8 @@
     <string name="category">Catégorie du produit</string>
     <string name="reviews_ratings">Notes et avis</string>
     <string name="quantity">Quantité</string>
-    <string name="description">Description du produit</string>
-    <string name="related_products">Vous aimeriez aussi les produits suivants...</string>
+
+    <string name="related_products">Produits similaires:</string>
     <string name="addToCart">Ajouter au panier</string>
     <string name="Featured">Featured</string>
     <string name="all">Tout</string>
@@ -168,6 +149,9 @@
     <string name="cgu">En cochant ce bouton, vous acceptez notre politique générale de vente, confitialité et d\'utilisation.</string>
     <string name="categories_name">Nom de la catégorie</string>
     <string name="continuer">Continuer</string>
-
+    <string name="currency_xaf">Francs CFA</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_article">Détail de l\'article</string>
+    <string name="description">Description</string>
 
 </resources>

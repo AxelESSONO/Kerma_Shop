@@ -91,8 +91,8 @@ public class MyOrders extends Fragment {
             final ProductOBJ orderDetails = ordersList.get(position);
 
 
-            holder.order_id.setText(String.valueOf(orderDetails.getID()));
-            holder.order_price.setText(orderDetails.getNewPrice());
+            //holder.order_id.setText(String.valueOf(orderDetails.getID()));
+            //holder.order_price.setText(orderDetails.getNewPrice());
 
 
 

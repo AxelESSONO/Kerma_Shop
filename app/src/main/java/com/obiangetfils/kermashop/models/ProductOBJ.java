@@ -1,80 +1,94 @@
 package com.obiangetfils.kermashop.models;
 
-public class ProductOBJ {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    private int ID;
-    private String title;
-    private String image;
-    private String newPrice;
-    private String oldPrice;
-    private boolean isNewTag;
-    private boolean isSaleTag;
-    private boolean isFeaturedTag;
-    private boolean isFavTag;
-    private int categoryID;
-    private int defaultStock;
-    private String productType;
+import java.util.List;
 
-    public ProductOBJ(int ID,
-                      String title,
-                      String image, //  non
+public class ProductOBJ implements Parcelable {
 
-                      String newPrice,
+    List<ImagesProducts> imagesProductsList;
+    String category, currentPrice, description, oldPrice, pid, pname, quantity;
+    Boolean tagNew, tagOnSale;
+
+    public ProductOBJ(List<ImagesProducts> imagesProductsList,
+                      String category,
+                      String currentPrice,
+                      String description,
                       String oldPrice,
-
-                      boolean isNewTag,
-                      boolean isSaleTag,
-                      boolean isFeaturedTag,
-                      boolean isFavTag,
-
-                      int categoryID, // non
-                      int defaultStock,
-                      String productType)
-    {
-        this.ID = ID;
-        this.title = title;
-        this.image = image;
-        this.newPrice = newPrice;
+                      String pid,
+                      String pname,
+                      String quantity,
+                      Boolean tagNew,
+                      Boolean tagOnSale) {
+        this.imagesProductsList = imagesProductsList;
+        this.category = category;
+        this.currentPrice = currentPrice;
+        this.description = description;
         this.oldPrice = oldPrice;
-        this.isNewTag = isNewTag;
-        this.isSaleTag = isSaleTag;
-        this.isFeaturedTag = isFeaturedTag;
-        this.isFavTag = isFavTag;
-        this.categoryID = categoryID;
-        this.defaultStock = defaultStock;
-        this.productType = productType;
+        this.pid = pid;
+        this.pname = pname;
+        this.quantity = quantity;
+        this.tagNew = tagNew;
+        this.tagOnSale = tagOnSale;
     }
 
-    public int getID() {
-        return ID;
+    protected ProductOBJ(Parcel in) {
+        category = in.readString();
+        currentPrice = in.readString();
+        description = in.readString();
+        oldPrice = in.readString();
+        pid = in.readString();
+        pname = in.readString();
+        quantity = in.readString();
+        byte tmpTagNew = in.readByte();
+        tagNew = tmpTagNew == 0 ? null : tmpTagNew == 1;
+        byte tmpTagOnSale = in.readByte();
+        tagOnSale = tmpTagOnSale == 0 ? null : tmpTagOnSale == 1;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public static final Creator<ProductOBJ> CREATOR = new Creator<ProductOBJ>() {
+        @Override
+        public ProductOBJ createFromParcel(Parcel in) {
+            return new ProductOBJ(in);
+        }
+
+        @Override
+        public ProductOBJ[] newArray(int size) {
+            return new ProductOBJ[size];
+        }
+    };
+
+    public List<ImagesProducts> getImagesProductsList() {
+        return imagesProductsList;
     }
 
-    public String getTitle() {
-        return title;
+    public void setImagesProductsList(List<ImagesProducts> imagesProductsList) {
+        this.imagesProductsList = imagesProductsList;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getCategory() {
+        return category;
     }
 
-    public String getImage() {
-        return image;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public String getCurrentPrice() {
+        return currentPrice;
     }
 
-    public String getNewPrice() {
-        return newPrice;
+    public void setCurrentPrice(String currentPrice) {
+        this.currentPrice = currentPrice;
     }
 
-    public void setNewPrice(String newPrice) {
-        this.newPrice = newPrice;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getOldPrice() {
@@ -85,60 +99,62 @@ public class ProductOBJ {
         this.oldPrice = oldPrice;
     }
 
-    public boolean isNewTag() {
-        return isNewTag;
+    public String getPid() {
+        return pid;
     }
 
-    public void setNewTag(boolean newTag) {
-        isNewTag = newTag;
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
-    public boolean isSaleTag() {
-        return isSaleTag;
+    public String getPname() {
+        return pname;
     }
 
-    public void setSaleTag(boolean saleTag) {
-        isSaleTag = saleTag;
+    public void setPname(String pname) {
+        this.pname = pname;
     }
 
-    public boolean isFeaturedTag() {
-        return isFeaturedTag;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setFeaturedTag(boolean featuredTag) {
-        isFeaturedTag = featuredTag;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
-    public boolean isFavTag() {
-        return isFavTag;
+    public Boolean getTagNew() {
+        return tagNew;
     }
 
-    public void setFavTag(boolean favTag) {
-        isFavTag = favTag;
+    public void setTagNew(Boolean tagNew) {
+        this.tagNew = tagNew;
     }
 
-    public int getCategoryID() {
-        return categoryID;
+    public Boolean getTagOnSale() {
+        return tagOnSale;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public void setTagOnSale(Boolean tagOnSale) {
+        this.tagOnSale = tagOnSale;
     }
 
-    public int getDefaultStock() {
-        return defaultStock;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setDefaultStock(int defaultStock) {
-        this.defaultStock = defaultStock;
-    }
-
-    public String getProductType() {
-        return productType;
-    }
-
-    public void setProductType(String productType) {
-        this.productType = productType;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(category);
+        dest.writeString(currentPrice);
+        dest.writeString(description);
+        dest.writeString(oldPrice);
+        dest.writeString(pid);
+        dest.writeString(pname);
+        dest.writeString(quantity);
+        dest.writeByte((byte) (tagNew == null ? 0 : tagNew ? 1 : 2));
+        dest.writeByte((byte) (tagOnSale == null ? 0 : tagOnSale ? 1 : 2));
     }
 }
 

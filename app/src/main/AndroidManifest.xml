@@ -43,7 +43,7 @@
             android:name=".Buyer.BuyerHomeActivity"
             android:label="@string/title_activity_buyer_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Buyer.SplashActivity">
+        <activity android:name=".login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

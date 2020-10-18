@@ -2,12 +2,10 @@ package com.obiangetfils.kermashop.Buyer;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,13 +30,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.obiangetfils.kermashop.BuildConfig;
-import com.obiangetfils.kermashop.DataSettings.MyData;
 import com.obiangetfils.kermashop.Interface.RightMenuClick;
 import com.obiangetfils.kermashop.Intro.IntroScreen;
-import com.obiangetfils.kermashop.Prevalent.Prevalent;
 import com.obiangetfils.kermashop.R;
 import com.obiangetfils.kermashop.Story.StoryHomeActivity;
 import com.obiangetfils.kermashop.fragments.Category;
@@ -58,13 +53,12 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
     private Toolbar toolbar;
     private ActionBar actionBar;
     private ImageView drawer_header, user_image;
-    private ImageButton right_nevigation_cross_btn;
+    private ImageButton right_navigation_cross_btn;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView, navigationView_right;
     private ExpandableListView main_drawer_list;
     private TextView userName, userPhone;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    private FloatingActionButton floatingActionButton;
 
     AlertDialog builder;
     private List<DrawerMenuItem> items = new ArrayList<>();
@@ -74,11 +68,6 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
         setTheme(Ecom01ThemesDialog.getcolorList().get(Ecom01ThemesDialog.selectedTheme).getThemeID());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_home);
-
-        //MyData.fillData();
-
-        MyData myData = new MyData(getApplicationContext());
-        myData.fillData();
 
         bindViews();
 
@@ -98,26 +87,13 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
         navigationView = findViewById(R.id.navigationView);
 
         navigationView_right = findViewById(R.id.navigationView_right);
-        right_nevigation_cross_btn = findViewById(R.id.right_nevigation_cross_btn);
+        right_navigation_cross_btn = findViewById(R.id.right_nevigation_cross_btn);
         main_drawer_list = findViewById(R.id.main_drawer_list);
         drawer_header = findViewById(R.id.drawer_header);
         user_image = findViewById(R.id.drawer_profile_image);
 
         userName = findViewById(R.id.drawer_profile_name);
         userPhone = findViewById(R.id.drawer_profile_phone);
-
-        floatingActionButton = findViewById(R.id.fab);
-        userName.setText(Prevalent.getCurrentOnLineUser(Prevalent.currentOnLineUser.getUser_phone(), getApplicationContext()).getUser_firstname());
-        userPhone.setText(Prevalent.currentOnLineUser.getUser_phone());
-        Glide.with(getApplicationContext()).load(Prevalent.currentOnLineUser.getUser_image()).into(user_image);
-
-        if(Prevalent.currentOnLineUser.getUser_type().equals("Acheteur")){
-
-            String uri = "@drawable/ic_settings_black_24dp";
-            int imageResource = getResources().getIdentifier(uri, null, getPackageName());
-            Drawable res = getResources().getDrawable(imageResource);
-            floatingActionButton.setImageDrawable(res);
-        }
 
     }
 
@@ -182,12 +158,12 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
         });
 
         TextView drawer_profile_name = findViewById(R.id.drawer_profile_name);
-        drawer_profile_name.setText(Prevalent.getCurrentOnLineUser(Prevalent.currentOnLineUser.getUser_phone(), getApplicationContext()).getUser_firstname());
+
     }
 
     private void setupRightNevigationItem() {
 
-        right_nevigation_cross_btn.setOnClickListener(new View.OnClickListener() {
+        right_navigation_cross_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.closeDrawer(navigationView_right);
@@ -275,7 +251,7 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
             setActionBarTitle("Categories");
 
             f = new Category();
-            int styleNumber = Integer.parseInt(fragmentTitle.substring(fragmentTitle.length()-1));
+            int styleNumber = Integer.parseInt(fragmentTitle.substring(fragmentTitle.length() - 1));
             Bundle b = new Bundle();
             b.putInt("CategoryStyleNumber", styleNumber);
             f.setArguments(b);
@@ -284,9 +260,9 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
 
         /* Shop */
         if (fragmentTitle.equalsIgnoreCase("Newest")
-                || fragmentTitle.equalsIgnoreCase("TopSellers")
-                || fragmentTitle.equalsIgnoreCase("SuperDeals")
-                || fragmentTitle.equalsIgnoreCase("MostLiked")) {
+            || fragmentTitle.equalsIgnoreCase("TopSellers")
+            || fragmentTitle.equalsIgnoreCase("SuperDeals")
+            || fragmentTitle.equalsIgnoreCase("MostLiked")) {
 
             Bundle productBundle = new Bundle();
             productBundle.putString("sortBy", fragmentTitle);

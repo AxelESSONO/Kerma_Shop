@@ -1,6 +1,8 @@
 package com.obiangetfils.kermashop.DataSettings;
 
 import android.content.Context;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +45,9 @@ public class MyData {
 
     public static void fillData() {
 
+        final DatabaseReference databaseReference;
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
         dummyBanners.clear();
         dummyProducts.clear();
         allCategoriesList.clear();
@@ -63,12 +68,9 @@ public class MyData {
         dummyNewsBanners.add(new BannersOBJ("Banner 3", R.drawable.img_deals));
 
         //All products
-        String uri = "https://firebasestorage.googleapis.com/v0/b/kerma-shop-76da2.appspot.com/o/Product%20Images%2FImageimage%3A597?alt=media&token=dfc40357-ad5b-491c-890f-68382bce312a";
-        // "R.drawable.img_bottom"
+        //String uri = "https://firebasestorage.googleapis.com/v0/b/kerma-shop-76da2.appspot.com/o/Product%20Images%2FImageimage%3A597?alt=media&token=dfc40357-ad5b-491c-890f-68382bce312a";
 
-        dummyProducts.add(new ProductOBJ(1001, "Ladies Paints", uri, "$85", "$108", true,
-                false, false, false, 0, 10, "Single"));
-
+       /* dummyProducts.add(new ProductOBJ(1001, "Ladies Paints", uri, "$85", "$108", true, false, false, false, 0, 10, "Single"));
         dummyProducts.add(new ProductOBJ(1002, "Black Scirt", uri, "$192", "$358", false, false, true, false, 1, 10, "Single"));
         dummyProducts.add(new ProductOBJ(1003, "Printed T_Shirt", uri, "$35", "$40", false, true, false, false, 2, 0, "Single"));
         dummyProducts.add(new ProductOBJ(1004, "Ladies Stylish Shirt", uri, "$120", "$135", false, false, false, false, 3, 10, "Single"));
@@ -88,7 +90,7 @@ public class MyData {
         dummyProducts.add(new ProductOBJ(1018, "Quilted Giltet Hoodie", uri, "$385", "$390", false, true, false, false, 3, 0, "Single"));
         dummyProducts.add(new ProductOBJ(1019, "Air Mesh Heels", uri, "$365", "$375", false, false, true, false, 4, 10, "Single"));
         dummyProducts.add(new ProductOBJ(1020, "Starry Sky Wrist", uri, "$135", "$140", false, false, false, true, 5, 10, "Variable"));
-
+*/
         // Product Details
         dummyDetailedProduct.add(new BannersOBJ("Banner 1", R.drawable.productdetails_01));
         dummyDetailedProduct.add(new BannersOBJ("Banner 2", R.drawable.productdetails_02));
@@ -99,7 +101,7 @@ public class MyData {
 
 
 
-    /*    allCategoriesList.add(new CategoryOBJ(url, R.drawable.category_men_icon, "Tops", 23));
+    /*  allCategoriesList.add(new CategoryOBJ(url, R.drawable.category_men_icon, "Tops", 23));
         allCategoriesList.add(new CategoryOBJ(url, R.drawable.category_women_icon, "Bottoms", 14));
         allCategoriesList.add(new CategoryOBJ(url, R.drawable.category_boys_icon, "Shirts", 16));
         allCategoriesList.add(new CategoryOBJ(url, R.drawable.category_girls_icon, "Winter Wear", 10));
@@ -146,7 +148,7 @@ public class MyData {
         return dummyProducts;
     }
 
-    public static List<ProductOBJ> getDummyNewstProducts() {
+ /*   public static List<ProductOBJ> getDummyNewstProducts() {
         List<ProductOBJ> newestProducts = new ArrayList<>();
         for (ProductOBJ obj : dummyProducts) {
             if (obj.isNewTag()) {
@@ -154,9 +156,9 @@ public class MyData {
             }
         }
         return newestProducts;
-    }
+    }*/
 
-    public static List<ProductOBJ> getDumySaleProducts() {
+/*    public static List<ProductOBJ> getDumySaleProducts() {
         List<ProductOBJ> saleProducts = new ArrayList<>();
         for (ProductOBJ obj : dummyProducts) {
             if (obj.isSaleTag()) {
@@ -184,7 +186,7 @@ public class MyData {
             }
         }
         return favProducts;
-    }
+    }*/
 
     public static List<ProductOBJ> getDummyRecentProducts() {
         List<ProductOBJ> recentProducts = new ArrayList<>();
@@ -197,7 +199,7 @@ public class MyData {
         return allCategoriesList;
     }
 
-    public static List<ProductOBJ> getDummyProductsByCategory(int categoryId) {
+  /*  public static List<ProductOBJ> getDummyProductsByCategory(int categoryId) {
         List<ProductOBJ> productsByCategory = new ArrayList<>();
         for (ProductOBJ obj : dummyProducts) {
             if (obj.getCategoryID() == categoryId) {
@@ -205,7 +207,7 @@ public class MyData {
             }
         }
         return productsByCategory;
-    }
+    }*/
 
     public static void addToCartProduct(ProductOBJ obj){
         dummyCart.add(obj);
@@ -223,23 +225,23 @@ public class MyData {
         favProducts.remove(obj);
     }
 
-    public static ProductOBJ getDummyProductById(int productId) {
+/*    public static ProductOBJ getDummyProductById(int productId) {
         for (ProductOBJ obj : dummyProducts) {
             if (obj.getID() == productId) {
                 return obj;
             }
         }
         return null;
-    }
+    }*/
 
-    public static boolean isCartContains(int productId) {
+  /*  public static boolean isCartContains(int productId) {
         for (ProductOBJ obj : dummyCart){
             if (obj.getID() == productId){
                 return true;
             }
         }
         return false;
-    }
+    }*/
 
     public static void placeOrder() {
         orderedProducts.addAll(dummyCart);
