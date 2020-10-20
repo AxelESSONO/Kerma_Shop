@@ -74,7 +74,7 @@ public class AllProductsHorizontal extends Fragment {
         newestProductList = new ArrayList<>();
 
 
-        productAdapter = new ProductAdapter(getContext(), newestProductList, true, shortType);
+        productAdapter = new ProductAdapter(getContext(), newestProductList, true, shortType, "allProductHorizontal");
         newest_recycler.setAdapter(productAdapter);
         newest_recycler.setHasFixedSize(true);
         newest_recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));

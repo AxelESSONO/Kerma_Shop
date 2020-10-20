@@ -132,9 +132,7 @@ public class AllProducts extends Fragment {
 
                         String selectedText = sortArray[which];
                         sortListText.setText(selectedText);
-
                         dialog.dismiss();
-
                     }
                 });
                 dialog.show();
@@ -171,7 +169,6 @@ public class AllProducts extends Fragment {
                 productKeyList = new ArrayList<>();
                 productOBJList = new ArrayList<>();
 
-
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     productKeyList.add(dataSnapshot.getKey());
                 }
@@ -202,12 +199,7 @@ public class AllProducts extends Fragment {
 
                 gridLayoutManager = new GridLayoutManager(getContext(), 2);
                 linearLayoutManager = new LinearLayoutManager(getContext());
-
-                if (isCategoryFragmet) {
-                    productAdapter = new ProductAdapter(getContext(), productOBJList, false, "");
-                } else {
-                    productAdapter = new ProductAdapter(getContext(), productOBJList, false, "");
-                }
+                productAdapter = new ProductAdapter(getContext(), productOBJList, false, "", "allProduct");
                 setRecyclerViewLayoutManager(isGridView);
                 all_products_recycler.setAdapter(productAdapter);
             }

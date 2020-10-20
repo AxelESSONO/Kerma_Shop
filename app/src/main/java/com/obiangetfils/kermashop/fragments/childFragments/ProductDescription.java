@@ -1,9 +1,11 @@
 package com.obiangetfils.kermashop.fragments.childFragments;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +18,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.obiangetfils.kermashop.BuildConfig;
 import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
 import com.obiangetfils.kermashop.Buyer.DisplayProductMatchingCategoryActivity;
@@ -32,8 +42,8 @@ import com.obiangetfils.kermashop.adapters.PagerImageDetailAdapter;
 import com.obiangetfils.kermashop.adapters.ProductAdapter;
 import com.obiangetfils.kermashop.models.ImagesProducts;
 import com.obiangetfils.kermashop.models.ProductOBJ;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
@@ -85,6 +95,14 @@ public class ProductDescription extends Fragment {
     private List<ImagesProducts> imagesProducts;
     PagerImageDetailAdapter pagerImageDetailAdapter;
     private List<ProductOBJ> productList;
+
+
+    //List
+    private List<ProductOBJ> productOBJS;
+    List<ImagesProducts> imagesProductsList;
+    List<String> categoryList;
+    List<String> productKeyList;
+
 
     private int dotsCount;
     private ImageView[] dots;
@@ -157,8 +175,17 @@ public class ProductDescription extends Fragment {
         checkoutOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent categoryIntent = new Intent(mContext, DisplayProductMatchingCategoryActivity.class);
-                mContext.startActivity(categoryIntent);
+
+                Fragment fragment = new Checkout();
+                FragmentManager fragmentManager = ((BuyerHomeActivity) getContext())
+                        .getSupportFragmentManager();
+
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
+                        .replace(R.id.main_fragment, fragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -171,16 +198,67 @@ public class ProductDescription extends Fragment {
 
     private void setSimilarProduct() {
 
-        ArrayList<String> arrayList = new ArrayList<>();
+        // Instantiate List
+        productKeyList = new ArrayList<>();
+        productOBJS = new ArrayList<>();
 
-        Collections.sort(arrayList);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Products").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-        productAdapter = new ProductAdapter(getContext(), productList, false, "");
-        gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        recyclerViewSimilar.setHasFixedSize(false);
-        recyclerViewSimilar.setLayoutManager(gridLayoutManager);
-        setRecyclerViewLayoutManager(true);
-        recyclerViewSimilar.setAdapter(productAdapter);
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (!productID.getPid().equals(dataSnapshot.getKey())) {
+                        productKeyList.add(dataSnapshot.getKey());
+                    }
+                }
+
+                if (productKeyList.size() > 0) {
+
+                    for (int i = 0; i < productKeyList.size(); i++) {
+                        final String category, currentPrice, description, oldPrice, pid, pname, quantity;
+                        final Boolean tagNew, tagOnSale;
+
+                        imagesProductsList = new ArrayList<>();
+                        category = snapshot.child(productKeyList.get(i)).child("category").getValue(String.class);
+                        if (category.equals(productID.getCategory())) {
+
+                            currentPrice = snapshot.child(productKeyList.get(i)).child("currentPrice").getValue(String.class);
+                            description = snapshot.child(productKeyList.get(i)).child("description").getValue(String.class);
+                            oldPrice = snapshot.child(productKeyList.get(i)).child("oldPrice").getValue(String.class);
+                            pid = snapshot.child(productKeyList.get(i)).child("pid").getValue(String.class);
+                            pname = snapshot.child(productKeyList.get(i)).child("pname").getValue(String.class);
+                            quantity = snapshot.child(productKeyList.get(i)).child("quantity").getValue(String.class);
+                            tagNew = snapshot.child(productKeyList.get(i)).child("tagNew").getValue(Boolean.class);
+                            tagOnSale = snapshot.child(productKeyList.get(i)).child("tagOnSale").getValue(Boolean.class);
+
+                            for (DataSnapshot imageData : snapshot.child(productKeyList.get(i)).child("ImagesProducts").getChildren()) {
+                                String imageUrl = imageData.getValue(String.class);
+                                imagesProductsList.add(new ImagesProducts(imageUrl));
+                            }
+                            productOBJS.add(new ProductOBJ(imagesProductsList, category, currentPrice, description,
+                                    oldPrice, pid, pname, quantity, tagNew, tagOnSale));
+                        }
+                    }
+
+                    productAdapter = new ProductAdapter(getContext(), productOBJS, false, "", "productDescription");
+                    gridLayoutManager = new GridLayoutManager(getContext(), 2);
+                    recyclerViewSimilar.setHasFixedSize(false);
+                    recyclerViewSimilar.setLayoutManager(gridLayoutManager);
+                    setRecyclerViewLayoutManager(true);
+                    recyclerViewSimilar.setAdapter(productAdapter);
+
+                } else {
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+
+        });
 
     }
 
@@ -220,19 +298,26 @@ public class ProductDescription extends Fragment {
         product_attributes.setVisibility(View.GONE);
 
         simple_product.setVisibility(View.VISIBLE);
-        product_stock.setText(getString(R.string.in_stock));
-        product_stock.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccentBlue));
+
+        if (!productID.getQuantity().equals("0")) {
+            product_stock.setText(getString(R.string.in_stock));
+            product_stock.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccentBlue));
+        } else {
+            product_stock.setText(getString(R.string.out_of_stock));
+            product_stock.setTextColor(ContextCompat.getColor(getContext(), R.color.red_500));
+        }
+
         productCartBtn.setText(getString(R.string.addToCart));
         //productCartBtn.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_corners_button_accent));
-        product_price_new.setText(product.getCurrentPrice());
+        product_price_new.setText(product.getCurrentPrice() + " FCFA");
 
         // Setup the ImageSlider of Product Images
         pagerImageDetailAdapter = new PagerImageDetailAdapter(productID.getPname(), imagesProducts, getContext());
         setViewPager(pagerImageDetailAdapter, sliderLayout);
 
         // Set Product's Information
-        title.setText("VAUGHN SUEDE SLIP-ON SNEAKER");
-        product_description_webView.setText(getResources().getString(R.string.lorem_ipsum));
+        title.setText(productID.getPname());
+        product_description_webView.setText(productID.getDescription());
 
         //product_tag_new.setVisibility(product.isNewTag() ? View.VISIBLE : View.GONE);
         //product_tag_featured.setVisibility(product.isFeaturedTag() ? View.VISIBLE : View.GONE);
@@ -244,11 +329,17 @@ public class ProductDescription extends Fragment {
 
         // Decrease Product Quantity
         product_quantity_minusBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
+
                 if (number[0] > 1) {
                     number[0] = number[0] - 1;
                     product_item_quantity.setText("" + number[0]);
+                    int cartPrice = number[0] * Integer.parseInt(productID.getCurrentPrice());
+                    product_price_new.setText("" + cartPrice + " FCFA");
+                } else {
+                    product_price_new.setText(productID.getCurrentPrice() + " FCFA");
                 }
             }
         });
@@ -256,10 +347,13 @@ public class ProductDescription extends Fragment {
 
         // Increase Product Quantity
         product_quantity_plusBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
                 number[0] = number[0] + 1;
                 product_item_quantity.setText("" + number[0]);
+                int cartPrice = number[0] * Integer.parseInt(productID.getCurrentPrice());
+                product_price_new.setText("" + cartPrice + " FCFA");
             }
         });
 
@@ -319,8 +413,6 @@ public class ProductDescription extends Fragment {
         productCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
 
                 Toast.makeText(getContext(), "Produit ajouté au panier", Toast.LENGTH_SHORT).show();
             }

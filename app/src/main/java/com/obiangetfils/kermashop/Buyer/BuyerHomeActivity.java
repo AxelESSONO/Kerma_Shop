@@ -40,6 +40,7 @@ import com.obiangetfils.kermashop.fragments.Category;
 import com.obiangetfils.kermashop.fragments.MyCart;
 import com.obiangetfils.kermashop.fragments.SearchFragment;
 import com.obiangetfils.kermashop.fragments.childFragments.AllProducts;
+import com.obiangetfils.kermashop.fragments.childFragments.FavoriteProducts;
 import com.obiangetfils.kermashop.fragments.childFragments.Product;
 import com.obiangetfils.kermashop.login.LoginActivity;
 import com.obiangetfils.kermashop.utills.DrawerLocker;
@@ -277,12 +278,18 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
 
             setDrawerEnabled(false);
 
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("isHeaderVisible", true);
-            bundle.putBoolean("favorites", true);
-            Fragment fragment = new AllProducts();
-            fragment.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation).addToBackStack(null).replace(R.id.main_fragment, fragment).commit();
+            //Bundle bundle = new Bundle();
+            //bundle.putBoolean("isHeaderVisible", true);
+            //bundle.putBoolean("favorites", true);
+            Fragment fragment = new FavoriteProducts();
+            //fragment.setArguments(bundle);
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
+                    .addToBackStack(null)
+                    .replace(R.id.main_fragment, fragment)
+                    .commit();
         }
 
         if (fragmentTitle.equalsIgnoreCase("ShareApp")) {

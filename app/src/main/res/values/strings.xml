@@ -149,9 +149,10 @@
     <string name="cgu">En cochant ce bouton, vous acceptez notre politique générale de vente, confitialité et d\'utilisation.</string>
     <string name="categories_name">Nom de la catégorie</string>
     <string name="continuer">Continuer</string>
-    <string name="currency_xaf">Francs CFA</string>
+    <string name="currency_xaf">FCFA</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="detail_article">Détail de l\'article</string>
     <string name="description">Description</string>
+    <string name="out_of_stock">En rupture de stock</string>
 
 </resources>

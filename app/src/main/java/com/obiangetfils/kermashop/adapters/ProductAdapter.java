@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -20,9 +21,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.obiangetfils.kermashop.Buyer.BuyerHomeActivity;
-import com.obiangetfils.kermashop.DataSettings.MyData;
 import com.obiangetfils.kermashop.R;
 import com.obiangetfils.kermashop.fragments.childFragments.ProductDescription;
 import com.obiangetfils.kermashop.models.ProductOBJ;
@@ -40,18 +48,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     private final String OUT_OF_STOCK_BUTTON = "onOutOfStockButtonClicked";
 
     private MyViewHolder holder;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
-    private Context context;
+    private final Context context;
     private Boolean isGridView;
-    private Boolean isHorizontal;
-    private String shortType;
-    private List<ProductOBJ> productList;
+    private String fragmentName;
+    private final Boolean isHorizontal;
+    private final String shortType;
+    private final List<ProductOBJ> productList;
 
-    public ProductAdapter(Context context, List<ProductOBJ> productList, Boolean isHorizontal, String shortType) {
+    public ProductAdapter(Context context, List<ProductOBJ> productList, Boolean isHorizontal, String shortType, String fragmentName) {
         this.context = context;
         this.productList = productList;
         this.isHorizontal = isHorizontal;
         this.shortType = shortType;
+        this.fragmentName = fragmentName;
     }
 
     @Override
@@ -83,24 +95,28 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 .into(holder.product_cover);
         holder.product_title.setText(product.getPname());
 
-        if (product.getOldPrice().equals("0")){
+        if (product.getOldPrice().equals("0")) {
             holder.product_price_strike.setVisibility(View.GONE);
-        }else {
-            holder.product_price_strike.setText(product.getOldPrice()+ " "+ context.getString(R.string.currency_xaf));
+        } else {
+            holder.product_price_strike.setText(product.getOldPrice() + " " + context.getString(R.string.currency_xaf));
         }
-        holder.currentPrice.setText(product.getCurrentPrice()+ " " + context.getString(R.string.currency_xaf));
+        holder.currentPrice.setText(product.getCurrentPrice() + " " + context.getString(R.string.currency_xaf));
 
-        holder.product_like_btn.setOnCheckedChangeListener(null);
+        if (fragmentName.equals("favorite")){
+            holder.product_like_btn.setChecked(true);
+        } else {
+            holder.product_like_btn.setOnCheckedChangeListener(null);
+        }
 
         holder.product_like_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (holder.product_like_btn.isChecked()) {
-                    holder.product_like_btn.setChecked(true);
-                    Snackbar.make(view, "Produit ajouté aux favories", Snackbar.LENGTH_SHORT).show();
+
+                    addToFavorite(product, view, holder);
+
                 } else {
-                    holder.product_like_btn.setChecked(false);
-                    Snackbar.make(view, "Produit retiré des favories", Snackbar.LENGTH_SHORT).show();
+                    removeFromCategory(product, holder, view);
                 }
             }
         });
@@ -123,6 +139,38 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     }
 
+    private void removeFromCategory(final ProductOBJ product, final MyViewHolder myViewHolder, final View view) {
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Favorites").child( currentUser.getUid())
+                .child(product.getPid())
+                .removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                myViewHolder.product_like_btn.setChecked(false);
+                Snackbar.make(view, "Produit retiré des favories", Snackbar.LENGTH_SHORT).show();
+                productList.remove(product);
+                notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void addToFavorite(ProductOBJ product, final View view, final MyViewHolder myViewHolder) {
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Favorites").child( currentUser.getUid())
+                .child(product.getPid())
+                .setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                myViewHolder.product_like_btn.setChecked(true);
+                Snackbar.make(view, "Produit ajouté aux favories", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     public int getItemCount() {
         return productList.size();
@@ -130,6 +178,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     public void toggleLayout(Boolean isGridView) {
         this.isGridView = isGridView;
+    }
+
+    private void gotoProductDetails(ProductOBJ productOBJ) {
+
+        Fragment fragment = new ProductDescription();
+        Bundle bundle = new Bundle();
+
+        bundle.putParcelable("PRODUCT_DETAIL_BUNDLE", productOBJ);
+        bundle.putParcelableArrayList("ALL_PRODUCT", (ArrayList<? extends Parcelable>) productList);
+        fragment.setArguments(bundle);
+        FragmentManager fragmentManager = ((BuyerHomeActivity) context).getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
+                .replace(R.id.main_fragment, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .addToBackStack(null).commit();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -158,22 +222,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             product_add_cart_btn = itemView.findViewById(R.id.product_card_Btn);
             product_like_btn = itemView.findViewById(R.id.product_like_btn);
         }
-    }
-
-    private void gotoProductDetails(ProductOBJ productOBJ) {
-
-        Fragment fragment = new ProductDescription();
-        Bundle bundle = new Bundle();
-
-        bundle.putParcelable("PRODUCT_DETAIL_BUNDLE",  productOBJ);
-        bundle.putParcelableArrayList("ALL_PRODUCT", (ArrayList<? extends Parcelable>) productList);
-        fragment.setArguments(bundle);
-        FragmentManager fragmentManager = ((BuyerHomeActivity) context).getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
-                .replace(R.id.main_fragment, fragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .addToBackStack(null).commit();
     }
 }
 

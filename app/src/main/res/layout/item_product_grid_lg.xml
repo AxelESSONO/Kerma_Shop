@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
-    card_view:cardElevation="5dp"
+    card_view:cardElevation="25dp"
     card_view:cardCornerRadius="5dp"
     card_view:cardPreventCornerOverlap="false">
 
@@ -125,7 +125,7 @@
                             android:id="@+id/linear_price"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="9"
+                            android:layout_weight="8.5"
                             android:orientation="vertical">
 
                             <TextView
@@ -152,8 +152,8 @@
                         <ToggleButton
                             android:id="@+id/product_like_btn"
                             android:layout_width="0dp"
-                            android:layout_height="25dp"
-                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
                             android:layout_marginEnd="5dp"
                             android:textOff=""
                             android:textOn=""

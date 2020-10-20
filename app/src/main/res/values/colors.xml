@@ -2,6 +2,7 @@
 <resources>
 
     <color name="white">#FFFFFF</color>
+    <color name="whiteBroken">#E2F5FAFA</color>
     <color name="black">#000000</color>
     <color name="colorGrey">#4E586E</color>
     <color name="custom_transparent">#50FFFFFF</color>
@@ -9,6 +10,7 @@
     <color name="colorPrimary">#936037</color>
     <color name="colorPrimaryDark">#663F20</color>
     <color name="colorPrimaryLight">#D8A87D</color>
+    <color name="colorPrimaryTooLight">#F3E6DB</color>
 
     <color name="colorAccent">#1a5ecd</color>
     <color name="colorAccentDark">#1b47b2</color>

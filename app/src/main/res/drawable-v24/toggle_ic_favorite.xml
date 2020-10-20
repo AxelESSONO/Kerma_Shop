@@ -3,11 +3,11 @@
 
     <item android:state_checked="false">
         <bitmap android:src="@drawable/ic_favorite_border"
-                android:tint="@color/colorAccentGreen" />
+                android:tint="@color/colorPrimary" />
     </item>
     <item android:state_checked="true">
         <bitmap android:src="@drawable/ic_favorite"
-                android:tint="@color/colorAccentGreen" />
+                android:tint="@color/colorPrimary" />
     </item>
 
 
