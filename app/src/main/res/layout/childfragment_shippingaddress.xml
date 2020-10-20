@@ -9,19 +9,26 @@
 
     <RadioGroup
         android:id="@+id/daily_weekly_button_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+
+        android:drawablePadding="15dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
 
         <RadioButton
             android:id="@+id/radio0"
-            android:layout_width="134dp"
+            android:layout_width="0dp"
             android:gravity="center"
             android:layout_height="38dp"
+            android:layout_weight="1"
             android:background="@drawable/radio_flat_selector"
             android:button="@android:color/transparent"
             android:checked="true"
@@ -35,8 +42,10 @@
         <RadioButton
             android:id="@+id/radio1"
             android:gravity="center"
-            android:layout_width="134dp"
+            android:layout_width="0dp"
             android:layout_height="38dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
             android:background="@drawable/radio_flat_selector"
             android:button="@android:color/transparent"
             android:paddingLeft="16dp"

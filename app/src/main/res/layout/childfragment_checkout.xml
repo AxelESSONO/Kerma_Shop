@@ -860,7 +860,7 @@
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/order_now"
                 android:textAlignment="center"
                 android:textAllCaps="true"
