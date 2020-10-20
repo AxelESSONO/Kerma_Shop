@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favorite_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/bottomBar" />
+
+    <LinearLayout
+        android:id="@+id/linear_favorite"
+        android:layout_centerInParent="true"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_heart_broken"
+            android:tint="@color/colorPrimary"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/empty_record"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@string/record_not_found"
+            android:textColor="@color/textColorPrimaryDark"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
