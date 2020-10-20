@@ -56,7 +56,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         }
 
         holder.category_title.setText(categoryDetails.getName());
-        holder.category_products.setText(categoriesList.get(position).getCount() + " " + context.getString(R.string.products));
+        //holder.category_products.setText(categoriesList.get(position).getCount() + " " + context.getString(R.string.products));
 
         holder.category_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +79,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
         RelativeLayout category_card;
         ImageView category_image;
-        TextView category_title, category_products;
+        TextView category_title;
+        //TextView category_products;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
             category_card = itemView.findViewById(R.id.category_card);
             category_image = itemView.findViewById(R.id.category_image);
             category_title = itemView.findViewById(R.id.category_title);
-            category_products = itemView.findViewById(R.id.category_products);
+            //category_products = itemView.findViewById(R.id.category_products);
         }
     }
 
