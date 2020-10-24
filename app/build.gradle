@@ -131,10 +131,14 @@ dependencies {
     implementation 'com.github.ATHBK:UltimateTabLayout:1.3.0'
 
     /* Stepper */
-    implementation 'com.ernestoyaquello.stepperform:vertical-stepper-form:2.3.0'
+    implementation 'com.github.liefery:android-vertical-stepper-view:0.2.1'
+
 
     /* Gson */
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    /* Custom snackBar */
+    compile 'com.chootdev:csnackbar:1.4.2'
 
     testImplementation 'junit:junit:4.12'
 
