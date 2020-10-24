@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.VerifyCodeActivity"></activity>
+        <activity android:name=".login.VerifyCodeActivity" />
         <activity android:name=".Admin.AddCategoryActivity" />
         <activity android:name=".Story.StoryHomeActivity" />
         <activity android:name=".login.ResetPasswordActivity" />
