@@ -24,13 +24,13 @@ public class SearchFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
         // Set title bar
-        ((BuyerHomeActivity) getActivity()).setActionBarTitle("Search");
+        ((BuyerHomeActivity) getActivity()).setActionBarTitle("Rechercher un article");
         ((BuyerHomeActivity) getActivity()).setDrawerEnabled(false);
 
         
         // Binding Layout Views
         banner_adView = (FrameLayout) rootView.findViewById(R.id.banner_adView);
-        search_editText = (SearchView) rootView.findViewById(R.id.search_editText);
+        //search_editText = (SearchView) rootView.findViewById(R.id.search_editText);
     
         banner_adView.setVisibility(View.GONE);
 
