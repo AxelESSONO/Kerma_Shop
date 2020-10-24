@@ -4,38 +4,38 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/windowBackground">
+    android:background="@color/windowBackground"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/cart_view_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:orientation="vertical"
         android:padding="20dp"
-        android:visibility="gone"
-        android:layout_centerInParent="true">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/empty_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="@string/empty_cart"
-            android:textSize="18sp"
             android:textColor="@color/textColorSecondaryLight"
-            android:layout_gravity="center_horizontal" />
+            android:textSize="18sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/continue_shopping_btn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/button_margin"
+            android:background="@drawable/rounded_corners_button_green"
             android:text="Explorer"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text_size"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="@dimen/button_margin"
-            app:backgroundTint="@color/colorAccentGreen"
-            android:background="@drawable/rounded_corners_button_green" />
+            app:backgroundTint="@color/colorAccentGreen" />
 
     </LinearLayout>
 
@@ -59,31 +59,24 @@
                     android:id="@+id/cart_items_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="5dp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cart_coupons_recycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    card_view:listitem="@layout/item_cart"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    card_view:cardElevation="2dp"
-                    card_view:cardCornerRadius="0dp"
-                    card_view:cardUseCompatPadding="true"
-                    card_view:cardPreventCornerOverlap="false"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/white">
+                    android:background="@color/white"
+                    card_view:cardCornerRadius="0dp"
+                    card_view:cardElevation="2dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    card_view:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -93,17 +86,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Liste Des Codes Promo"
-                            android:textSize="20sp"
-                            android:textStyle="normal"
-                            android:padding="5dp"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/black"/>
+                            android:padding="5dp"
+                            android:text="Liste Des Codes Promo"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="normal" />
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
                             android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
                             android:layout_marginEnd="15dp"
                             android:layout_marginBottom="10dp">
 
@@ -111,27 +105,27 @@
                                 android:id="@+id/cart_coupon_btn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="35dp"
-                                android:text="Valider"
-                                android:textColor="@color/white"
-                                android:textAllCaps="false"
-                                android:layout_marginStart="8dp"
-                                android:layout_centerVertical="true"
                                 android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/rounded_corners_button_green"
                                 android:backgroundTint="?attr/colorPrimary"
-                                android:background="@drawable/rounded_corners_button_green" />
+                                android:text="Valider"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white" />
 
                             <EditText
                                 android:id="@+id/cart_coupon_code"
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_toStartOf="@+id/cart_coupon_btn"
+                                android:background="@color/windowBackground"
                                 android:hint="Code promo"
                                 android:inputType="textNoSuggestions"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondaryDark"
                                 android:padding="5dp"
-                                android:background="@color/windowBackground"
-                                android:layout_centerVertical="true"
-                                android:layout_toStartOf="@+id/cart_coupon_btn" />
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="14sp" />
 
                         </RelativeLayout>
 
@@ -139,14 +133,14 @@
                             android:id="@+id/demo_coupons_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/sample_coupons"
-                            android:textSize="14sp"
-                            android:textStyle="italic"
-                            android:clickable="true"
                             android:layout_marginStart="15dp"
                             android:layout_marginBottom="5dp"
-                            android:visibility="visible"
-                            android:textColor="@color/colorAccentDark" />
+                            android:clickable="true"
+                            android:text="@string/view_my_coupons"
+                            android:textColor="@color/colorAccentDark"
+                            android:textSize="14sp"
+                            android:textStyle="italic"
+                            android:visibility="visible" />
 
                     </LinearLayout>
 
@@ -156,107 +150,57 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    card_view:cardElevation="2dp"
-                    card_view:cardCornerRadius="0dp"
-                    card_view:cardUseCompatPadding="true"
-                    card_view:cardPreventCornerOverlap="false"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/white">
+                    android:background="@color/white"
+                    card_view:cardCornerRadius="0dp"
+                    card_view:cardElevation="2dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    card_view:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:id="@+id/cart_prices"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:orientation="vertical"
                         android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:background="@color/white">
+                        android:paddingBottom="5dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp"
                             android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="15dp"
                             android:paddingTop="5dp"
                             android:paddingEnd="15dp"
-                            android:paddingStart="15dp"
-                            android:layout_marginTop="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="@string/subtotal"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
-
-                            <TextView
-                                android:id="@+id/cart_subtotal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:text="$00.0"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
-                                android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:paddingTop="5dp"
-                            android:paddingEnd="15dp"
-                            android:paddingStart="15dp"
-                            android:paddingBottom="5dp"
-                            android:layout_marginTop="5dp">
+                            android:paddingBottom="5dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
                                 android:text="@string/discount"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary" />
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/cart_discount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:gravity="end"
                                 android:maxLines="1"
                                 android:text="$00.0"
-                                android:textSize="14sp"
-                                android:textColor="@color/textColorSecondary"
                                 android:textAlignment="textEnd"
-                                android:gravity="end"
-                                android:layout_alignParentEnd="true" />
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="14sp" />
 
                         </RelativeLayout>
-
-                        <TextView
-                            android:id="@+id/cart_total_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/total_price"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textAlignment="textStart"
-                            android:textColor="@color/colorAccentGreen"
-                            android:paddingTop="5dp"
-                            android:paddingEnd="15dp"
-                            android:paddingStart="15dp"
-                            android:paddingBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:gravity="start"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentStart="true" />
 
                     </LinearLayout>
 
@@ -267,42 +211,69 @@
 
         </androidx.core.widget.NestedScrollView>
 
+    </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/cart_bottom_bar"
+    <LinearLayout
+        android:id="@+id/cart_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/layoutBackgroundLight"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dividerLight" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/layoutBackgroundLight">
+            android:background="@color/white"
+            android:padding="10dp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/dividerLight" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white">
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:gravity="start"
+                android:padding="5dp"
+                android:text="@string/total_price"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/cart_checkout_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:text="@string/checkout"
-                    android:textAllCaps="false"
-                    android:textSize="16sp"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:backgroundTint="?attr/colorPrimary"
-                    android:background="@drawable/rounded_corners_button_green" />
+            <TextView
+                android:id="@+id/totalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/total_price"
+                android:padding="5dp"
+                android:text="0 FCFA"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-            </RelativeLayout>
+            <Button
+                android:id="@+id/cart_checkout_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/rounded_corners_button_green"
+                android:text="@string/payment"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
-        </LinearLayout>
-
+        </RelativeLayout>
 
     </LinearLayout>
 
