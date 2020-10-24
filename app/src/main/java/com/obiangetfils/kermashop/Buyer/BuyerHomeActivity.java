@@ -2,9 +2,11 @@ package com.obiangetfils.kermashop.Buyer;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,21 +18,32 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.obiangetfils.kermashop.BuildConfig;
 import com.obiangetfils.kermashop.Interface.RightMenuClick;
 import com.obiangetfils.kermashop.Intro.IntroScreen;
@@ -38,8 +51,6 @@ import com.obiangetfils.kermashop.R;
 import com.obiangetfils.kermashop.Story.StoryHomeActivity;
 import com.obiangetfils.kermashop.fragments.Category;
 import com.obiangetfils.kermashop.fragments.MyCart;
-import com.obiangetfils.kermashop.fragments.SearchFragment;
-import com.obiangetfils.kermashop.fragments.childFragments.AllProducts;
 import com.obiangetfils.kermashop.fragments.childFragments.FavoriteProducts;
 import com.obiangetfils.kermashop.fragments.childFragments.Product;
 import com.obiangetfils.kermashop.login.LoginActivity;
@@ -51,6 +62,8 @@ import java.util.List;
 
 public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker, RightMenuClick {
 
+    private RelativeLayout toolbarRelative;
+    private SearchView searchView;
     private Toolbar toolbar;
     private ActionBar actionBar;
     private ImageView drawer_header, user_image;
@@ -58,11 +71,24 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
     private DrawerLayout drawerLayout;
     private NavigationView navigationView, navigationView_right;
     private ExpandableListView main_drawer_list;
-    private TextView userName, userPhone;
+    private TextView userName, cartCountTv;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     AlertDialog builder;
     private List<DrawerMenuItem> items = new ArrayList<>();
+
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            long cartCount = intent.getLongExtra("CartCount", -1);
+            if (cartCount > 0) {
+                cartCountTv.setText("" + cartCount);
+            } else {
+                cartCountTv.setText("0");
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,18 +98,40 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
 
         bindViews();
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-message"));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                String text = newText;
+                //adapter.filter(text);
+
+                return false;
+            }
+        });
+
         setSupportActionBar(toolbar);
         setupToolbar();
         setupDrawer();
         setupMenuItems();
         setupDrawerList();
-        setupRightNevigationItem();
+        setupRightNavigationItem();
         onNavigationItemClick("Home7");
     }
 
     @SuppressLint("RestrictedApi")
     private void bindViews() {
-        toolbar = findViewById(R.id.myToolbar);
+        toolbarRelative = findViewById(R.id.myToolbar);
+        toolbar = toolbarRelative.findViewById(R.id.toolbar);
+        searchView = toolbarRelative.findViewById(R.id.searchView);
+
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
 
@@ -94,8 +142,6 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
         user_image = findViewById(R.id.drawer_profile_image);
 
         userName = findViewById(R.id.drawer_profile_name);
-        userPhone = findViewById(R.id.drawer_profile_phone);
-
     }
 
     public void setActionBarTitle(String title) {
@@ -162,7 +208,7 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
 
     }
 
-    private void setupRightNevigationItem() {
+    private void setupRightNavigationItem() {
 
         right_navigation_cross_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,27 +230,27 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
         items.add(new DrawerMenuItem(R.drawable.ic_categories_icon, "Category", categoryChildItems));
 
         List<ChildItem> shop = new ArrayList<>();
-        shop.add(new ChildItem(R.drawable.ic_fiber_new_black_24dp, "Newest"));
-        shop.add(new ChildItem(R.drawable.ic_fiber_new_black_24dp, "Top Sellers"));
-        shop.add(new ChildItem(R.drawable.ic_stars_black_24dp, "Super Deals"));
-        shop.add(new ChildItem(R.drawable.ic_stars_black_24dp, "Most Liked"));
-        items.add(new DrawerMenuItem(R.drawable.ic_shop_icon, "Shop", shop));
+        shop.add(new ChildItem(R.drawable.ic_fiber_new_black_24dp, "Les plus récents"));
+        shop.add(new ChildItem(R.drawable.ic_fiber_new_black_24dp, "Meilleurs ventes"));
+        shop.add(new ChildItem(R.drawable.ic_stars_black_24dp, "Super Affaires"));
+        shop.add(new ChildItem(R.drawable.ic_stars_black_24dp, "Les plus aimés"));
+        items.add(new DrawerMenuItem(R.drawable.ic_shop_icon, "Boutique", shop));
 
-        items.add(new DrawerMenuItem(R.drawable.ic_person_black_24dp, "My Account", null));
-        items.add(new DrawerMenuItem(R.drawable.ic_assignment_black_24dp, "My Orders", null));
-        items.add(new DrawerMenuItem(R.drawable.ic_medal, "Reward Points", null));
-        items.add(new DrawerMenuItem(R.drawable.ic_scratch_card, "Scratch Cards", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_person_black_24dp, "Mon compte", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_assignment_black_24dp, "Mes commandes", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_medal, "Points de récompense", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_scratch_card, "Cartes à gratter", null));
 
-        items.add(new DrawerMenuItem(R.drawable.ic_location_on_black_24dp, "My Addresses", null));
-        items.add(new DrawerMenuItem(R.drawable.ic_favourite_icon, "My Favorites", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_location_on_black_24dp, "Mon adresse", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_favourite_icon, "Mes favoris", null));
         items.add(new DrawerMenuItem(R.drawable.ic_intro_icon, "Intro", null));
         items.add(new DrawerMenuItem(R.drawable.ic_news_icon, "News", null));
-        items.add(new DrawerMenuItem(R.drawable.ic_contact_icon, "Contact Us", null));
-        items.add(new DrawerMenuItem(R.drawable.ic_about_us_icon, "About", null));
-        items.add(new DrawerMenuItem(R.drawable.ic_share_black_24dp, "Share App", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_contact_icon, "Nous contacter", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_about_us_icon, "A propos de nous", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_share_black_24dp, "Partager notre application", null));
         items.add(new DrawerMenuItem(R.drawable.ic_rate_us_icon, "Rate & Review", null));
-        items.add(new DrawerMenuItem(R.drawable.ic_settings_icon, "Settings", null));
-        items.add(new DrawerMenuItem(R.drawable.ic_account_balance_wallet_black_24dp, "Login", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_settings_icon, "Réglages", null));
+        items.add(new DrawerMenuItem(R.drawable.ic_account_balance_wallet_black_24dp, "Connectivité", null));
     }
 
     private void setupDrawerList() {
@@ -322,28 +368,66 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+
+        // CART
+        final MenuItem item = menu.findItem(R.id.actionToolbar_Cart);
+        RelativeLayout cart_relative = (RelativeLayout) menu.findItem(R.id.actionToolbar_Cart).getActionView();
+        cartCountTv = cart_relative.findViewById(R.id.tv_cart_count);
+
+        //cartCountTv.setText("2");
+
+        setCartCount();
+
+        item.getActionView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new MyCart();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
+                        .replace(R.id.main_fragment, fragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .addToBackStack(null).commit();
+            }
+        });
+
         return true;
+    }
+
+    private void setCartCount() {
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("CartList").child(firebaseUser.getUid())
+                .child("ProductCart").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                long cartCount = snapshot.getChildrenCount();
+                if (cartCount > 0) {
+                    cartCountTv.setText("" + cartCount);
+                } else {
+                    cartCountTv.setText("0");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
-        MenuItem languageItem = menu.findItem(R.id.actionToolbar_languages);
-        MenuItem searchItem = menu.findItem(R.id.actionToolbar_search);
         MenuItem cartItem = menu.findItem(R.id.actionToolbar_Cart);
-        MenuItem themeItem = menu.findItem(R.id.actionToolbar_themes);
         MenuItem storyItem = menu.findItem(R.id.actionToolbar_story);
 
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            themeItem.setVisible(true);
-            languageItem.setVisible(true);
-            searchItem.setVisible(false);
             cartItem.setVisible(false);
             storyItem.setVisible(false);
         } else {
-            themeItem.setVisible(false);
-            languageItem.setVisible(false);
-            searchItem.setVisible(true);
             cartItem.setVisible(true);
             storyItem.setVisible(true);
         }
@@ -352,43 +436,22 @@ public class BuyerHomeActivity extends AppCompatActivity implements DrawerLocker
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
-            case R.id.actionToolbar_languages:
-                Toast.makeText(this, "Langues", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.actionToolbar_search:
-
-                Fragment searchFragment = new SearchFragment();
-                FragmentManager searchFragmentManager = getSupportFragmentManager();
-                searchFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
-                        .replace(R.id.main_fragment, searchFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .addToBackStack(null).commit();
-                break;
 
             case R.id.actionToolbar_Cart:
-                Fragment fragment = new MyCart();
+              /*  Fragment fragment = new MyCart();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
                         .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
                         .replace(R.id.main_fragment, fragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .addToBackStack(null).commit();
+                        .addToBackStack(null).commit();*/
 
                 break;
 
             case R.id.actionToolbar_story:
-
                 startActivity(new Intent(BuyerHomeActivity.this, StoryHomeActivity.class));
-
-                break;
-
-
-            case R.id.actionToolbar_themes:
-                Ecom01ThemesDialog dialog = new Ecom01ThemesDialog(BuyerHomeActivity.this);
-                dialog.show();
                 break;
         }
         return true;

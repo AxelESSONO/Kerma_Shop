@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary"
-    android:elevation="4dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:layout_collapseMode="pin"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:title="@string/app_name" />
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="@string/app_name" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:layout_below="@id/toolbar"
+        app:queryHint = "@string/research"
+        android:inputType="textNoSuggestions"
+        android:imeOptions="actionSearch"
+        android:textSize="14sp"
+        app:iconifiedByDefault="false"
+        app:queryBackground="@color/white"
+        android:textColor="@color/textColorSecondaryLight"
+        android:textColorHint="@color/textColorPrimaryDark"
+        android:drawablePadding="5dp"
+        android:padding="5dp"
+        android:background="@drawable/rounded_corners_edittext_light"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>
